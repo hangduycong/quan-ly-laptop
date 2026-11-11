@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<title>Quản lý laptop</title>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--line:#334155;--tx:#e2e8f0;--mut:#94a3b8;--acc:#38bdf8;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;gap:10px;align-items:center}
+header h1{font-size:16px;margin:0;flex:1}
+select,input,textarea,button{font:inherit;color:inherit}
+select,input,textarea{background:#0b1222;border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+textarea{min-height:90px;resize:vertical}
+button{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer}
+button.pri{background:var(--acc);color:#04202e;border-color:var(--acc);font-weight:600}
+button.bad{background:#3b1414;border-color:#7f1d1d;color:#fecaca}
+button.sm{padding:5px 10px;font-size:13px;border-radius:8px}
+button:disabled{opacity:.5}
+main{padding:12px 14px;max-width:760px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.card h2{font-size:14px;margin:0 0 10px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row{display:flex;gap:8px;align-items:center}
+.row>*{flex:1}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.kv div:nth-child(odd){color:var(--mut)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:var(--bad)}
+.dot.on{background:var(--ok)}
+.mut{color:var(--mut);font-size:13px}
+.app{display:flex;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.app:first-child{border-top:0}
+.app .n{flex:1;min-width:0}
+.app .t{color:var(--mut);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar{height:6px;background:#0b1222;border-radius:3px;margin-top:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc)}
+.hours{display:flex;align-items:flex-end;gap:2px;height:110px;margin-top:6px}
+.hours div{flex:1;background:var(--acc);border-radius:2px 2px 0 0;min-height:1px}
+.hl{display:flex;justify-content:space-between;color:var(--mut);font-size:11px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#0b1222;border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;border-radius:0;background:none;padding:9px 2px;font-size:11px;color:var(--mut)}
+nav button b{display:block;font-size:19px;font-weight:400}
+nav button.act{color:var(--acc)}
+#screen img{width:100%;border-radius:8px;border:1px solid var(--line);background:#000;min-height:120px}
+.ev{padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.ev:first-child{border-top:0}
+.ev.warn{color:#fde68a}.ev.alert{color:#fca5a5}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#020617;border:1px solid var(--line);padding:10px 16px;border-radius:10px;z-index:20;max-width:90%}
+.seg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.seg label{border:1px solid var(--line);border-radius:10px;padding:9px;display:flex;gap:8px;align-items:flex-start;font-size:14px}
+.seg input{width:auto;margin-top:3px}
+.lim{display:grid;grid-template-columns:1fr 90px 36px;gap:6px;margin-bottom:6px}
+#login{max-width:360px;margin:15vh auto;padding:0 20px}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+
+<div id="login" class="hide">
+  <h1 style="font-size:20px">Quản lý laptop từ xa</h1>
+  <p class="mut">Đăng nhập bằng tài khoản bố mẹ đã tạo trong Firebase.</p>
+  <input id="em" type="email" placeholder="Email" autocomplete="username" style="margin-bottom:8px">
+  <input id="pw" type="password" placeholder="Mật khẩu" autocomplete="current-password">
+  <p><button class="pri" style="width:100%" onclick="doLogin()">Đăng nhập</button></p>
+  <p id="loginErr" style="color:var(--bad)"></p>
+</div>
+
+<div id="app" class="hide">
+<header>
+  <h1><span id="dot" class="dot"></span><span id="devName">Đang kết nối…</span></h1>
+  <select id="devSel" style="width:auto;max-width:45%" onchange="selectDev(this.value)"></select>
+</header>
+<main>
+
+<!-- TỔNG QUAN -->
+<section data-tab="home">
+  <div class="card"><h2>Trạng thái</h2><div id="statusBox" class="kv"><div>—</div><div></div></div></div>
+  <div class="card"><h2>Nguồn</h2>
+    <div class="grid">
+      <button onclick="power('lock')">🔒 Khoá màn hình</button>
+      <button onclick="power('sleep')">🌙 Cho ngủ</button>
+      <button onclick="power('restart')">🔄 Khởi động lại</button>
+      <button class="bad" onclick="power('shutdown')">⏻ Tắt máy</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <input id="delayMin" type="number" min="1" value="10" style="flex:0 0 80px">
+      <span class="mut" style="flex:0 0 auto">phút</span>
+      <button onclick="power('shutdown', +$('delayMin').value*60)">Hẹn tắt</button>
+      <button onclick="power('cancel')">Huỷ hẹn</button>
+    </div>
+    <p class="mut">Bật máy từ xa khi máy đã tắt hẳn không làm được qua internet — xem README.</p>
+  </div>
+  <div class="card"><h2>Nhắn lên màn hình laptop</h2>
+    <div class="row"><input id="msgText" placeholder="Ví dụ: Con ơi, xuống ăn cơm nhé!"><button style="flex:0 0 auto" onclick="sendMsg()">Gửi</button></div>
+  </div>
+</section>
+
+<!-- MÀN HÌNH -->
+<section data-tab="screen" id="screen" class="hide">
+  <div class="card"><h2>Màn hình laptop</h2>
+    <img id="shot" alt="">
+    <p class="mut" id="shotInfo">Bấm “Chụp” để xem màn hình hiện tại.</p>
+    <div class="row">
+      <button class="pri" onclick="snap()">📷 Chụp</button>
+      <button id="liveBtn" onclick="toggleLive()">▶ Xem trực tiếp</button>
+    </div>
+  </div>
+</section>
+
+<!-- ỨNG DỤNG -->
+<section data-tab="apps" class="hide">
+  <div class="card"><h2>Đang mở <button class="sm" style="float:right" onclick="loadApps()">Làm mới</button></h2><div id="appList" class="mut">…</div></div>
+  <div class="card"><h2>Mở ứng dụng / trang web</h2>
+    <div class="row"><input id="launchIn" placeholder="notepad, chrome, https://…"><button style="flex:0 0 auto" onclick="launch($('launchIn').value)">Mở</button></div>
+    <div id="quick" class="row" style="flex-wrap:wrap;margin-top:8px"></div>
+  </div>
+</section>
+
+<!-- THỜI GIAN -->
+<section data-tab="usage" class="hide">
+  <div class="card"><h2>Thời gian sử dụng</h2>
+    <div class="row"><input id="usageDate" type="date" onchange="loadUsage()"><button style="flex:0 0 auto" onclick="loadUsage()">Xem</button></div>
+    <p id="usageTotal" style="font-size:20px;margin:12px 0 4px"></p>
+    <p class="mut" id="usageSpan"></p>
+    <div class="hours" id="hours"></div>
+    <div class="hl"><span>0h</span><span>6h</span><span>12h</span><span>18h</span><span>23h</span></div>
+  </div>
+  <div class="card"><h2>Theo ứng dụng</h2><div id="usageApps"></div></div>
+  <div class="card"><h2>Video YouTube đã xem</h2><div id="usageVideos"></div></div>
+  <div class="card"><h2>7 ngày gần nhất</h2><div id="usageWeek"></div></div>
+</section>
+
+<!-- HẠN CHẾ -->
+<section data-tab="rules" class="hide">
+  <div class="card"><h2>YouTube</h2>
+    <div class="seg" id="ytMode">
+      <label><input type="radio" name="yt" value="off"><span>Bình thường<br><span class="mut">Không giới hạn</span></span></label>
+      <label><input type="radio" name="yt" value="moderate"><span>Hạn chế vừa<br><span class="mut">Restricted Mode mức vừa</span></span></label>
+      <label><input type="radio" name="yt" value="strict"><span>Hạn chế chặt<br><span class="mut">Restricted Mode mức nghiêm</span></span></label>
+      <label><input type="radio" name="yt" value="block"><span>Chặn hẳn<br><span class="mut">Không vào được YouTube</span></span></label>
+    </div>
+    <p style="margin:12px 0 4px">Từ khoá cấm trong tiêu đề video (mỗi dòng một từ)</p>
+    <textarea id="ytKw" placeholder="ví dụ:&#10;kinh dị&#10;free fire&#10;prank"></textarea>
+    <label class="row" style="margin:10px 0"><input id="noIncog" type="checkbox" style="flex:0 0 auto;width:auto"><span>Tắt cửa sổ ẩn danh (Chrome, Edge, Brave)</span></label>
+    <p class="mut">Khi tiêu đề video YouTube chứa từ khoá, tab sẽ bị đóng và bạn nhận được thông báo. Không phân biệt dấu/hoa thường.</p>
+  </div>
+  <div class="card"><h2>Chặn trang web khác</h2>
+    <textarea id="sites" placeholder="tiktok.com&#10;facebook.com"></textarea>
+  </div>
+  <div class="card"><h2>Giới hạn thời gian ứng dụng mỗi ngày</h2>
+    <div id="limits"></div>
+    <button class="sm" onclick="addLimit()">+ Thêm giới hạn</button>
+    <p class="mut">Tên tiến trình, ví dụ <code>chrome.exe</code>, <code>roblox</code>… Đặt <code>*</code> để giới hạn tổng thời gian dùng máy.</p>
+  </div>
+  <div class="card"><h2>Giờ đi ngủ</h2>
+    <label class="row" style="margin-bottom:8px"><input id="bedOn" type="checkbox" style="flex:0 0 auto;width:auto"><span>Bật giờ đi ngủ</span></label>
+    <div class="row"><span class="mut" style="flex:0 0 40px">Từ</span><input id="bedStart" type="time"><span class="mut" style="flex:0 0 40px">đến</span><input id="bedEnd" type="time"></div>
+    <div class="row" style="margin-top:8px"><span class="mut" style="flex:0 0 80px">Hành động</span>
+      <select id="bedAct"><option value="lock">Khoá màn hình</option><option value="shutdown">Tắt máy</option></select></div>
+  </div>
+  <div class="card"><h2>Nút mở nhanh (trang Ứng dụng)</h2>
+    <textarea id="quickApps" placeholder="Word=winword&#10;Học toán=https://..."></textarea>
+  </div>
+  <button class="pri" style="width:100%;margin-bottom:12px" onclick="saveRules()">Lưu cài đặt</button>
+</section>
+
+<!-- THÔNG BÁO -->
+<section data-tab="events" class="hide">
+  <div class="card"><h2>Thông báo <button class="sm" style="float:right" onclick="clearEvents()">Xoá</button></h2><div id="evList"></div></div>
+  <button style="width:100%" onclick="logout()">Đăng xuất</button>
+</section>
+
+</main>
+<nav>
+  <button data-go="home" class="act"><b>🏠</b>Tổng quan</button>
+  <button data-go="screen"><b>🖥</b>Màn hình</button>
+  <button data-go="apps"><b>🗂</b>Ứng dụng</button>
+  <button data-go="usage"><b>⏱</b>Thời gian</button>
+  <button data-go="rules"><b>🛡</b>Hạn chế</button>
+  <button data-go="events"><b>🔔</b>Báo<span id="evBadge"></span></button>
+</nav>
+</div>
+
+<script src="config.js"></script>
+<script type="module">
+// Firebase SDK (tải từ máy chủ của Google, không cần cài gì)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, onValue, push, set, remove, query, limitToLast, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+try {
+  const app = initializeApp(window.FIREBASE_CONFIG);
+  window.FB = { auth: getAuth(app), db: getDatabase(app), signInWithEmailAndPassword, onAuthStateChanged, signOut,
+                ref, onValue, push, set, remove, query, limitToLast, serverTimestamp };
+} catch (e) { window.FB_ERROR = e.message; }
+window.dispatchEvent(new Event('fb-ready'));
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let devices = [], dev = localStorage.getItem('pc_dev'), live = false, events = [], tab = 'home', unread = 0, settings = null;
+let offset = 0, devData = {}, frameOff = null, subs = [], lastEvKey = null;
+
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),3000)}
+function fmtDur(s){s=Math.round(s||0);const h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?`${h} giờ ${m} phút`:m?`${m} phút`:`${s} giây`}
+function fmtTime(ts){const d=new Date(ts*1000);return d.toLocaleString('vi-VN',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})}
+function today(){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
+
+// ---------- đăng nhập (Firebase Auth)
+async function doLogin(){
+  $('loginErr').textContent='';
+  try{ await FB.signInWithEmailAndPassword(FB.auth,$('em').value.trim(),$('pw').value) }
+  catch(e){ $('loginErr').textContent = /invalid|wrong|user-not-found/.test(e.code||'') ? 'Sai email hoặc mật khẩu' : (e.code||e.message) }
+}
+$('pw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+function logout(){ FB.signOut(FB.auth) }
+
+function init(){
+  if(!window.FB){ $('login').classList.remove('hide'); $('loginErr').textContent='Chưa điền đúng file config.js: '+(window.FB_ERROR||''); return }
+  FB.onAuthStateChanged(FB.auth, user=>{
+    subs.forEach(off=>off()); subs=[];
+    if(!user){ $('login').classList.remove('hide'); $('app').classList.add('hide'); return }
+    $('login').classList.add('hide'); $('app').classList.remove('hide');
+    connect();
+  });
+}
+
+// ---------- kết nối Firebase
+function connect(){
+  const {db,ref,onValue,query,limitToLast}=FB;
+  subs.push(onValue(ref(db,'.info/serverTimeOffset'),s=>{offset=s.val()||0}));
+  subs.push(onValue(ref(db,'devices'),s=>{devData=s.val()||{};buildDevices()},e=>toast('⚠ Không đọc được dữ liệu: '+e.message)));
+  let first=true;
+  subs.push(onValue(query(ref(db,'events'),limitToLast(200)),s=>{
+    const list=[];s.forEach(c=>{const v=c.val();list.push({...v,key:c.key,ts:(v.ts||0)/1000})});
+    if(!first){ list.filter(e=>!lastEvKey||e.key>lastEvKey).forEach(e=>{ if(e.dev===dev&&tab!=='events')unread++; if(e.level!=='info')toast(e.msg) }) }
+    first=false; lastEvKey=list.length?list[list.length-1].key:null;
+    events=list; renderEvents();
+  }));
+  const t=setInterval(buildDevices,15000); subs.push(()=>clearInterval(t));
+}
+function buildDevices(){
+  const now=Date.now()+offset;
+  devices=Object.entries(devData).map(([id,v])=>({id,name:v.name||id,last_seen:(v.last_seen||0)/1000,
+    online: now-(v.last_seen||0) < 100000, status:v.status||{}}));
+  renderDevices();
+}
+function cmd(name,args={},timeout=25000){
+  const {db,ref,onValue,push,set,remove,serverTimestamp}=FB;
+  const d=cur(); if(!d||!d.online) return Promise.reject(new Error('Laptop đang tắt hoặc mất mạng'));
+  const c=push(ref(db,`cmds/${dev}`)); const rref=ref(db,`results/${dev}/${c.key}`);
+  return new Promise((res,rej)=>{
+    let off=()=>{};
+    const t=setTimeout(()=>{off();remove(c);rej(new Error('Laptop không phản hồi'))},timeout);
+    off=onValue(rref,s=>{const v=s.val(); if(!v)return; off(); clearTimeout(t); remove(rref);
+      v.ok?res(v.json?JSON.parse(v.json):null):rej(new Error(v.err||'Lỗi'))});
+    set(c,{cmd:name,args:JSON.stringify(args),ts:serverTimestamp()}).catch(e=>{off();clearTimeout(t);rej(e)});
+  });
+}
+async function run(name,args,okMsg){try{const r=await cmd(name,args);if(okMsg)toast(okMsg);return r}catch(e){toast('⚠ '+e.message)}}
+
+// ---------- thiết bị
+function renderDevices(){
+  const sel=$('devSel');
+  sel.innerHTML=devices.map(d=>`<option value="${esc(d.id)}">${d.online?'🟢':'⚪'} ${esc(d.name)}</option>`).join('')||'<option>Chưa có laptop</option>';
+  if(!devices.find(d=>d.id===dev)&&devices.length)dev=devices[0].id;
+  sel.value=dev;sel.style.display=devices.length>1?'':'none';renderStatus();
+}
+function selectDev(id){dev=id;localStorage.setItem('pc_dev',id);settings=null;renderStatus();onTab()}
+function cur(){return devices.find(d=>d.id===dev)}
+function renderStatus(){
+  const d=cur();
+  $('dot').className='dot'+(d&&d.online?' on':'');
+  $('devName').textContent=d?d.name:'Chưa có laptop nào kết nối';
+  if(!d){$('statusBox').innerHTML='<div>Chưa có laptop</div><div>Cài agent trên laptop trước.</div>';return}
+  if(!d.online){$('statusBox').innerHTML=`<div>Trạng thái</div><div>⚪ Offline</div><div>Lần cuối</div><div>${d.last_seen?fmtTime(d.last_seen):'—'}</div>`;return}
+  const s=d.status||{};
+  const rows=[['Trạng thái','🟢 Đang bật'],['Người dùng',s.user||'—'],['Đang dùng',s.fg_app?`${s.fg_app}`:(s.helper?'—':'(chưa đăng nhập Windows)')],
+    ['Cửa sổ',s.fg_title||'—'],['Không thao tác',s.idle!=null?fmtDur(s.idle):'—'],['Hôm nay đã dùng',fmtDur(s.today_total)],
+    ['Bật máy từ',s.boot?fmtTime(s.boot):'—'],['Pin',s.battery!=null?`${s.battery}%${s.plugged?' (đang sạc)':''}`:'—'],['CPU / RAM',`${s.cpu??'—'}% / ${s.ram??'—'}%`]];
+  if(s.shutdown_at)rows.push(['Hẹn tắt lúc',fmtTime(s.shutdown_at)]);
+  $('statusBox').innerHTML=rows.map(([k,v])=>`<div>${esc(k)}</div><div>${esc(v)}</div>`).join('');
+}
+
+// ---------- nguồn & tin nhắn
+const powerNames={lock:'khoá màn hình',sleep:'cho máy ngủ',restart:'khởi động lại',shutdown:'tắt máy',cancel:'huỷ hẹn tắt'};
+function power(action,delay=0){
+  if(['restart','shutdown'].includes(action)&&!confirm(`Chắc chắn ${powerNames[action]}${delay?` sau ${delay/60} phút`:''}?`))return;
+  run('power',{action,delay},`Đã gửi lệnh ${powerNames[action]}`);
+}
+function sendMsg(){const t=$('msgText').value.trim();if(t)run('message',{text:t},'Đã gửi lời nhắn').then(()=>$('msgText').value='')}
+
+// ---------- màn hình
+async function snap(){$('shotInfo').textContent='Đang chụp…';const r=await run('screenshot',{});if(r){$('shot').src='data:image/jpeg;base64,'+r.img;$('shotInfo').textContent='Chụp lúc '+new Date().toLocaleTimeString('vi-VN')}else $('shotInfo').textContent='Không chụp được.'}
+async function toggleLive(){
+  live=!live;$('liveBtn').textContent=live?'⏸ Dừng':'▶ Xem trực tiếp';
+  if(frameOff){frameOff();frameOff=null}
+  if(live) frameOff=FB.onValue(FB.ref(FB.db,`frames/${dev}`),s=>{const v=s.val();if(v&&v.img){$('shot').src='data:image/jpeg;base64,'+v.img;$('shotInfo').textContent='Trực tiếp · '+new Date().toLocaleTimeString('vi-VN')}});
+  await run('stream',{on:live,fps:1});
+}
+
+// ---------- ứng dụng
+async function loadApps(){
+  $('appList').textContent='Đang tải…';
+  const r=await run('apps');if(!r){$('appList').textContent='Không tải được.';return}
+  if(!r.length){$('appList').textContent='Không có ứng dụng nào đang mở.';return}
+  $('appList').innerHTML=r.map(a=>`<div class="app"><div class="n"><b>${esc(a.title||a.exe)}</b><div class="t">${esc(a.exe)} · hôm nay ${fmtDur(a.today)}</div>${a.windows.map(w=>`<div class="t">${esc(w)}</div>`).join('')}</div>
+    <button class="sm bad" onclick="killApp(${esc(JSON.stringify(a.exe))})">Đóng</button></div>`).join('');
+}
+async function killApp(exe){if(confirm('Đóng '+exe+'?')){await run('kill',{name:exe},'Đã đóng '+exe);setTimeout(loadApps,800)}}
+function launch(t){t=(t||'').trim();if(t)run('launch',{target:t},'Đã mở '+t)}
+function renderQuick(){
+  const q=(settings&&settings.quick_apps)||[];
+  $('quick').innerHTML=q.map(x=>`<button class="sm" style="flex:0 0 auto" onclick="launch(${esc(JSON.stringify(x.target))})">${esc(x.name)}</button>`).join('');
+}
+
+// ---------- thời gian
+async function loadUsage(){
+  if(!$('usageDate').value)$('usageDate').value=today();
+  const r=await run('usage',{date:$('usageDate').value});if(!r)return;
+  $('usageTotal').textContent='Tổng: '+fmtDur(r.total);
+  $('usageSpan').textContent=r.first!=null?`Dùng máy trong khoảng ${r.first}h – ${r.last+1}h`:'Không dùng máy ngày này';
+  const mx=Math.max(1,...r.hours);
+  $('hours').innerHTML=r.hours.map((s,h)=>`<div title="${h}h: ${fmtDur(s)}" style="height:${s/mx*100}%"></div>`).join('');
+  const amx=Math.max(1,...r.apps.map(a=>a.seconds));
+  $('usageApps').innerHTML=r.apps.map(a=>`<div class="app"><div class="n"><b>${esc(a.exe)}</b><span class="mut" style="float:right">${fmtDur(a.seconds)}</span><div class="bar"><i style="width:${a.seconds/amx*100}%"></i></div></div></div>`).join('')||'<p class="mut">Không có dữ liệu.</p>';
+  $('usageVideos').innerHTML=(r.videos||[]).map(v=>`<div class="app"><div class="n">${esc(v.title)}<div class="t">${fmtTime(v.last)} · xem ${fmtDur(v.seconds)}</div></div></div>`).join('')||'<p class="mut">Không có.</p>';
+  const wk=await run('usage_days',{days:7});if(!wk)return;
+  const wmx=Math.max(1,...wk.map(d=>d.total));
+  $('usageWeek').innerHTML=wk.map(d=>`<div class="app"><div class="n">${esc(d.date)}<span class="mut" style="float:right">${fmtDur(d.total)}</span><div class="bar"><i style="width:${d.total/wmx*100}%"></i></div></div></div>`).join('');
+}
+
+// ---------- hạn chế
+async function loadRules(){
+  const s=await run('get_settings');if(!s)return;settings=s;
+  document.querySelectorAll('input[name=yt]').forEach(r=>r.checked=r.value===s.web.youtube_mode);
+  $('ytKw').value=(s.web.keywords||[]).join('\n');
+  $('sites').value=(s.web.blocked_sites||[]).join('\n');
+  $('noIncog').checked=!!s.web.disable_incognito;
+  $('limits').innerHTML='';Object.entries(s.limits||{}).forEach(([k,v])=>addLimit(k,v));
+  $('bedOn').checked=!!s.bedtime.enabled;$('bedStart').value=s.bedtime.start;$('bedEnd').value=s.bedtime.end;$('bedAct').value=s.bedtime.action;
+  $('quickApps').value=(s.quick_apps||[]).map(x=>`${x.name}=${x.target}`).join('\n');
+  renderQuick();
+}
+function addLimit(name='',min=60){
+  const d=document.createElement('div');d.className='lim';
+  d.innerHTML=`<input placeholder="chrome.exe" value="${esc(name)}"><input type="number" min="0" value="${min}" title="phút/ngày"><button class="sm" onclick="this.parentNode.remove()">✕</button>`;
+  $('limits').appendChild(d);
+}
+async function saveRules(){
+  const lines=id=>$(id).value.split('\n').map(x=>x.trim()).filter(Boolean);
+  const limits={};document.querySelectorAll('#limits .lim').forEach(r=>{const [n,m]=r.querySelectorAll('input');if(n.value.trim())limits[n.value.trim().toLowerCase()]=+m.value||0});
+  const s={
+    web:{youtube_mode:(document.querySelector('input[name=yt]:checked')||{}).value||'off',keywords:lines('ytKw'),blocked_sites:lines('sites'),disable_incognito:$('noIncog').checked},
+    limits,
+    bedtime:{enabled:$('bedOn').checked,start:$('bedStart').value||'22:00',end:$('bedEnd').value||'06:00',action:$('bedAct').value},
+    quick_apps:lines('quickApps').map(l=>{const i=l.indexOf('=');return i>0?{name:l.slice(0,i).trim(),target:l.slice(i+1).trim()}:{name:l,target:l}})
+  };
+  const r=await run('set_settings',s,'Đã lưu và áp dụng');if(r){settings=r;renderQuick()}
+}
+
+// ---------- thông báo
+function renderEvents(){
+  const list=events.filter(e=>!dev||e.dev===dev).slice().reverse();
+  $('evList').innerHTML=list.map(e=>`<div class="ev ${esc(e.level)}"><span class="mut">${fmtTime(e.ts)}</span><br>${esc(e.msg)}</div>`).join('')||'<p class="mut">Chưa có thông báo.</p>';
+  $('evBadge').textContent=unread?` (${unread})`:'';
+}
+function clearEvents(){if(confirm('Xoá toàn bộ thông báo?'))FB.remove(FB.ref(FB.db,'events'))}
+
+// ---------- tab
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.go;onTab()});
+function onTab(){
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('act',b.dataset.go===tab));
+  document.querySelectorAll('section[data-tab]').forEach(s=>s.classList.toggle('hide',s.dataset.tab!==tab));
+  if(live&&tab!=='screen')toggleLive();
+  if(!cur()||!cur().online)return;
+  if(tab==='apps'){loadApps();if(!settings)loadRules()}
+  if(tab==='usage')loadUsage();
+  if(tab==='rules')loadRules();
+  if(tab==='events'){unread=0;renderEvents()}
+}
+if(window.FB||window.FB_ERROR)init(); else {
+  window.addEventListener('fb-ready',init,{once:true});
+  setTimeout(()=>{ if(!window.FB&&!window.FB_ERROR){ window.FB_ERROR='Không tải được Firebase — kiểm tra kết nối mạng rồi tải lại trang.'; init() } },10000);
+}
+</script>
+</body>
+</html>
