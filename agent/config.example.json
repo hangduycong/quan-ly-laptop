@@ -1,0 +1,10 @@
+{
+  "device_name": "Laptop cua Bin",
+  "firebase": {
+    "api_key": "AIza...",
+    "database_url": "https://ten-du-an-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "email": "laptop.bin@gmail.com",
+    "password": "mat-khau-tai-khoan-laptop"
+  },
+  "telegram": { "token": "123456789:ABC...", "pin": "2468", "chats": [] }
+}
