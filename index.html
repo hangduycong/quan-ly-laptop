@@ -146,8 +146,18 @@ nav button.act{color:var(--acc)}
     <label class="row" style="margin:10px 0"><input id="noIncog" type="checkbox" style="flex:0 0 auto;width:auto"><span>Tắt cửa sổ ẩn danh (Chrome, Edge, Brave)</span></label>
     <p class="mut">Khi tiêu đề video YouTube chứa từ khoá, tab sẽ bị đóng và bạn nhận được thông báo. Không phân biệt dấu/hoa thường.</p>
   </div>
+  <div class="card"><h2>Video ngắn</h2>
+    <label class="row"><input id="blockShorts" type="checkbox" style="flex:0 0 auto;width:auto"><span>Chặn video ngắn: YouTube Shorts, TikTok, Reels (Instagram/Facebook)</span></label>
+    <p class="mut">Chỉ chặn phần video ngắn — YouTube thường, Facebook, Instagram vẫn vào được. Áp dụng cho Chrome, Edge, Cốc Cốc, Brave.</p>
+  </div>
   <div class="card"><h2>Chặn trang web khác</h2>
+    <div class="row" style="flex-wrap:wrap;margin-bottom:8px" id="siteQuick"></div>
     <textarea id="sites" placeholder="tiktok.com&#10;facebook.com"></textarea>
+    <p class="mut">Mỗi dòng một trang. Bấm nút ở trên để thêm nhanh.</p>
+  </div>
+  <div class="card"><h2>Chặn hẳn ứng dụng</h2>
+    <textarea id="blockedApps" placeholder="roblox&#10;game.exe"></textarea>
+    <p class="mut">Các ứng dụng này bị đóng ngay khi mở. Mỗi dòng một tên, ví dụ <code>roblox</code>, <code>game.exe</code>. Khác với giới hạn giờ bên dưới.</p>
   </div>
   <div class="card"><h2>Giới hạn thời gian ứng dụng mỗi ngày</h2>
     <div id="limits"></div>
@@ -159,6 +169,10 @@ nav button.act{color:var(--acc)}
     <div class="row"><span class="mut" style="flex:0 0 40px">Từ</span><input id="bedStart" type="time"><span class="mut" style="flex:0 0 40px">đến</span><input id="bedEnd" type="time"></div>
     <div class="row" style="margin-top:8px"><span class="mut" style="flex:0 0 80px">Hành động</span>
       <select id="bedAct"><option value="lock">Khoá màn hình</option><option value="shutdown">Tắt máy</option></select></div>
+  </div>
+  <div class="card"><h2>Thông báo trên laptop</h2>
+    <label class="row"><input id="showNotice" type="checkbox" style="flex:0 0 auto;width:auto"><span>Hiện thông báo "máy được bố mẹ quản lý" mỗi khi khởi động</span></label>
+    <p class="mut">Tắt đi thì laptop không hiện thông báo này nữa. Thay đổi có hiệu lực ngay, không cần khởi động lại.</p>
   </div>
   <div class="card"><h2>Nút mở nhanh (trang Ứng dụng)</h2>
     <textarea id="quickApps" placeholder="Word=winword&#10;Học toán=https://..."></textarea>
@@ -338,10 +352,21 @@ async function loadRules(){
   $('ytKw').value=(s.web.keywords||[]).join('\n');
   $('sites').value=(s.web.blocked_sites||[]).join('\n');
   $('noIncog').checked=!!s.web.disable_incognito;
+  $('blockShorts').checked=!!s.web.block_shorts;
+  $('showNotice').checked=s.show_notice_on_start!==false;
+  $('blockedApps').value=(s.blocked_apps||[]).join('\n');
   $('limits').innerHTML='';Object.entries(s.limits||{}).forEach(([k,v])=>addLimit(k,v));
   $('bedOn').checked=!!s.bedtime.enabled;$('bedStart').value=s.bedtime.start;$('bedEnd').value=s.bedtime.end;$('bedAct').value=s.bedtime.action;
   $('quickApps').value=(s.quick_apps||[]).map(x=>`${x.name}=${x.target}`).join('\n');
-  renderQuick();
+  renderQuick();renderSiteQuick();
+}
+function addSite(dom){
+  const cur=$('sites').value.split('\n').map(x=>x.trim());
+  if(!cur.includes(dom)){$('sites').value=(cur.filter(Boolean).concat(dom)).join('\n');toast('Đã thêm '+dom)}
+}
+function renderSiteQuick(){
+  const presets=['tiktok.com','facebook.com','instagram.com','zalo.me','discord.com','reddit.com'];
+  $('siteQuick').innerHTML=presets.map(d=>`<button class="sm" style="flex:0 0 auto" onclick="addSite('${d}')">+ ${d}</button>`).join('');
 }
 function addLimit(name='',min=60){
   const d=document.createElement('div');d.className='lim';
@@ -352,10 +377,12 @@ async function saveRules(){
   const lines=id=>$(id).value.split('\n').map(x=>x.trim()).filter(Boolean);
   const limits={};document.querySelectorAll('#limits .lim').forEach(r=>{const [n,m]=r.querySelectorAll('input');if(n.value.trim())limits[n.value.trim().toLowerCase()]=+m.value||0});
   const s={
-    web:{youtube_mode:(document.querySelector('input[name=yt]:checked')||{}).value||'off',keywords:lines('ytKw'),blocked_sites:lines('sites'),disable_incognito:$('noIncog').checked},
+    web:{youtube_mode:(document.querySelector('input[name=yt]:checked')||{}).value||'off',keywords:lines('ytKw'),blocked_sites:lines('sites'),disable_incognito:$('noIncog').checked,block_shorts:$('blockShorts').checked},
     limits,
+    blocked_apps:lines('blockedApps'),
     bedtime:{enabled:$('bedOn').checked,start:$('bedStart').value||'22:00',end:$('bedEnd').value||'06:00',action:$('bedAct').value},
-    quick_apps:lines('quickApps').map(l=>{const i=l.indexOf('=');return i>0?{name:l.slice(0,i).trim(),target:l.slice(i+1).trim()}:{name:l,target:l}})
+    quick_apps:lines('quickApps').map(l=>{const i=l.indexOf('=');return i>0?{name:l.slice(0,i).trim(),target:l.slice(i+1).trim()}:{name:l,target:l}}),
+    show_notice_on_start:$('showNotice').checked
   };
   const r=await run('set_settings',s,'Đã lưu và áp dụng');if(r){settings=r;renderQuick()}
 }
