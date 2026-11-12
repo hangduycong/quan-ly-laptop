@@ -1,7 +1,7 @@
 window.FIREBASE_CONFIG = {
-  apiKey: "AIzaSyArTap0tExb15gs5RQmBPPBIwP4ZyuwsH4",
-  authDomain: "quan-ly-tuyen.firebaseapp.com",
-  databaseURL: "https://quan-ly-tuyen-default-rtdb.firebaseio.com",
-  projectId: "quan-ly-tuyen",
-  appId: "1:886573938296:web:18314a8e0d35d7b242df8d"
+    apiKey: "AIzaSyBybn8gtTEWvpNnPiVgpEBoDWIu5vNquyM",
+    authDomain: "quan-ly-laptop.firebaseapp.com",
+    databaseURL: "https://quan-ly-laptop-default-rtdb.firebaseio.com",
+    projectId: "quan-ly-laptop",
+    appId: "1:302403215341:web:62b44c460074c00b9091e4"
 };
