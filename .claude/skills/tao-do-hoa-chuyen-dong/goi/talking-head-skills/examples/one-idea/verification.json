@@ -1,0 +1,12 @@
+{
+  "note": "Transcription checks wording, not voice likeness or lip sync. Listen and watch before delivery.",
+  "scenes": [
+    {
+      "id": "intro",
+      "expected": "One idea. One short video.",
+      "actual": "One idea. One short video.",
+      "distance": 0,
+      "status": "match"
+    }
+  ]
+}

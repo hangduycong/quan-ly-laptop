@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-25",
+  "provider": "fal",
+  "model": "minimax/h3/reference-to-video",
+  "requests": 1,
+  "requestedVideoSeconds": 5,
+  "resolution": "768P",
+  "billableUnits": 6,
+  "unitPriceUsd": 0.05,
+  "videoCostUsd": 0.3,
+  "voice": "ElevenLabs Sarah (premade)",
+  "ttsModel": "eleven_multilingual_v2",
+  "newVoiceCloneCreated": false,
+  "transcriptExactMatch": true,
+  "review": "Transcript matched and composited stills were inspected; no claim of human listening or frame-exact lip-sync validation.",
+  "note": "Video cost excludes ElevenLabs speech and transcription charges."
+}

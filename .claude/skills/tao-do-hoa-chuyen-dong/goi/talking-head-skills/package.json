@@ -1,0 +1,11 @@
+{
+  "name": "talking-head-skills",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "pnpm --dir skills/talking-head install --frozen-lockfile",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
