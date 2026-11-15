@@ -31,11 +31,12 @@ HyperFrames biến HTML, CSS, media và animation có thể tua (GSAP, Lottie, T
 - **Node.js 22+** và `npx`. Lần đầu, `npx hyperframes` tải CLI từ npm: **hỏi người dùng trước khi cài**.
 - Trình duyệt Chrome/Chromium (CLI dùng để chụp từng khung hình) và ffmpeg.
 - Tài khoản HeyGen **không bắt buộc**: `/media-use` nói rõ cái gì miễn phí, cái gì cần HeyGen (gói Pro có trả phí). Không tự đăng ký hay dùng dịch vụ trả phí khi người dùng chưa đồng ý.
-- Dòng "Usage beacon" (`npx hyperframes events …`) trong `goc/hyperframes/SKILL.md` gửi dữ liệu sử dụng (telemetry) cho HeyGen: **bỏ qua** trừ khi người dùng đồng ý.
+- Dòng "Usage beacon" (`npx hyperframes events …`) trong `goc/hyperframes/SKILL.md` gửi dữ liệu sử dụng (telemetry) cho HeyGen: **bỏ qua** trừ khi người dùng đồng ý. CLI cũng tự thu thập dữ liệu sử dụng: lần đầu chạy trên máy, tắt bằng `npx hyperframes telemetry disable`.
+- Đã thử (CLI 0.9.52, Node 22): `init` → `check --json` (0 lỗi) → `render` ra MP4 1920×1080 5 giây trong ~7 giây. Không có `chrome-headless-shell` thì CLI dùng Chrome hệ thống ở chế độ chụp màn hình (chậm hơn, vẫn đúng).
 
 ## Cách làm việc với người dùng
 
-- Người dùng nói tiếng Việt: trả lời tiếng Việt, giữ nguyên lệnh và tên file. Chữ trên video theo ngôn ngữ người dùng muốn; font tiếng Việt cần đủ dấu (kiểm tra bằng `check` / snapshot, thêm `@font-face` từ `assets/fonts/` nếu font có sẵn không có dấu).
+- Người dùng nói tiếng Việt: trả lời tiếng Việt, giữ nguyên lệnh và tên file. Chữ trên video theo ngôn ngữ người dùng muốn; font tiếng Việt: dùng tên font có sẵn (Montserrat, Inter, Roboto, Open Sans, Lato, Poppins…), trình biên dịch tự tải bộ ký tự tiếng Việt từ Google Fonts nên dấu hiển thị đúng; font khác cần `@font-face` tới file trong `assets/fonts/`. Luôn xem snapshot để chắc dấu không bị lỗi.
 - Làm đúng thứ được yêu cầu (không tự thêm giọng đọc, phụ đề, đổi khung hình). Ý tưởng còn mơ hồ: đề xuất trước, chưa sửa.
 - Phim > ~15 giây có kể chuyện: đưa 3 hướng câu chuyện bằng lời (`references/story.md`) để người dùng chọn, rồi mới viết `SPEC.md`.
 - Trước khi giao: `npx hyperframes check --json`, sửa hết lỗi; phim thì `snapshot --review` và xem ảnh. Chỉ render bản cuối khi người dùng duyệt preview, hoặc xin file, hoặc bảo "làm hết đừng hỏi".
