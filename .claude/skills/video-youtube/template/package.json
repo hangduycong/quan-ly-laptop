@@ -1,0 +1,22 @@
+{
+  "name": "video-youtube-template",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "intro": "remotion render Intro out/intro.mp4 --props=./brand.json",
+    "outro": "remotion render Outro out/outro.mp4 --props=./brand.json",
+    "audiogram": "remotion render Audiogram out/audiogram.mp4 --props=./audiogram.json"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.543",
+    "@remotion/google-fonts": "4.0.543",
+    "@remotion/media-utils": "4.0.543",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.543"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}

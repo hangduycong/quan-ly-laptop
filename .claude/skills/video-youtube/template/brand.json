@@ -1,0 +1,14 @@
+{
+  "brand": {
+    "name": "Tên Kênh",
+    "tagline": "Video mới mỗi tuần",
+    "logo": "logo.svg",
+    "sting": "sting.wav",
+    "bg": "#0B0B14",
+    "fg": "#FFFFFF",
+    "accent": "#7C5CFF",
+    "cta": "Đăng ký kênh →"
+  },
+  "impact": 0.8,
+  "showGuides": false
+}

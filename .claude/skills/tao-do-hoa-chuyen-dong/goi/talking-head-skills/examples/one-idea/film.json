@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "aspect_ratio": "16:9",
+  "fps": 30,
+  "duration": 11.081868,
+  "scenes": [
+    {
+      "id": "intro",
+      "kind": "talking",
+      "text": "One idea. One short video.",
+      "heading": "One idea. One short video.",
+      "start": 0,
+      "duration": 5.184,
+      "media": "intro.mp4",
+      "words": [
+        {
+          "text": "One",
+          "start": 0.72,
+          "end": 0.84
+        },
+        {
+          "text": "idea.",
+          "start": 0.92,
+          "end": 1.3
+        },
+        {
+          "text": "One",
+          "start": 2.68,
+          "end": 2.84
+        },
+        {
+          "text": "short",
+          "start": 2.94,
+          "end": 3.14
+        },
+        {
+          "text": "video.",
+          "start": 3.22,
+          "end": 3.54
+        }
+      ],
+      "comparison": {
+        "expected": "One idea. One short video.",
+        "actual": "One idea. One short video.",
+        "distance": 0,
+        "status": "match"
+      }
+    },
+    {
+      "id": "steps",
+      "kind": "motion",
+      "text": "Write your message, choose the lines you want to say on camera, and use motion graphics to explain the rest.",
+      "heading": "Turn your words into a film",
+      "points": [
+        "Write your message",
+        "Choose your on-camera lines",
+        "Explain the rest with motion"
+      ],
+      "start": 5.184,
+      "duration": 5.897868,
+      "media": "steps.mp3",
+      "words": [
+        {
+          "text": "Write",
+          "start": 0.035,
+          "end": 0.244
+        },
+        {
+          "text": "your",
+          "start": 0.267,
+          "end": 0.372
+        },
+        {
+          "text": "message,",
+          "start": 0.406,
+          "end": 0.929
+        },
+        {
+          "text": "choose",
+          "start": 1.08,
+          "end": 1.382
+        },
+        {
+          "text": "the",
+          "start": 1.416,
+          "end": 1.486
+        },
+        {
+          "text": "lines",
+          "start": 1.533,
+          "end": 1.8
+        },
+        {
+          "text": "you",
+          "start": 1.834,
+          "end": 1.904
+        },
+        {
+          "text": "want",
+          "start": 1.95,
+          "end": 2.078
+        },
+        {
+          "text": "to",
+          "start": 2.101,
+          "end": 2.148
+        },
+        {
+          "text": "say",
+          "start": 2.194,
+          "end": 2.322
+        },
+        {
+          "text": "on",
+          "start": 2.38,
+          "end": 2.473
+        },
+        {
+          "text": "camera,",
+          "start": 2.531,
+          "end": 3.077
+        },
+        {
+          "text": "and",
+          "start": 3.286,
+          "end": 3.437
+        },
+        {
+          "text": "use",
+          "start": 3.506,
+          "end": 3.692
+        },
+        {
+          "text": "motion",
+          "start": 3.75,
+          "end": 4.04
+        },
+        {
+          "text": "graphics",
+          "start": 4.098,
+          "end": 4.551
+        },
+        {
+          "text": "to",
+          "start": 4.598,
+          "end": 4.667
+        },
+        {
+          "text": "explain",
+          "start": 4.748,
+          "end": 5.097
+        },
+        {
+          "text": "the",
+          "start": 5.143,
+          "end": 5.213
+        },
+        {
+          "text": "rest.",
+          "start": 5.259,
+          "end": 5.712
+        }
+      ]
+    }
+  ]
+}

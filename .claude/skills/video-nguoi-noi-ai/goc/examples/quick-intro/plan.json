@@ -1,0 +1,28 @@
+{
+  "language": "English",
+  "voice_id": "REPLACE_WITH_YOUR_VOICE_ID",
+  "images": ["../../inputs/portrait.jpg"],
+  "aspect_ratio": "16:9",
+  "resolution": "768P",
+  "scenes": [
+    {
+      "id": "intro",
+      "kind": "talking",
+      "text": "Your next video can start with a sentence. Here is how it works.",
+      "heading": "Start with a sentence"
+    },
+    {
+      "id": "steps",
+      "kind": "motion",
+      "text": "Write your message. Choose the lines you want to say on camera. Use motion graphics to explain the rest.",
+      "heading": "One message. Three steps.",
+      "points": ["Write your message", "Choose your on-camera lines", "Explain the rest with motion"]
+    },
+    {
+      "id": "close",
+      "kind": "talking",
+      "text": "Keep the story clear, and make every frame help tell it.",
+      "heading": "Make every frame count"
+    }
+  ]
+}
