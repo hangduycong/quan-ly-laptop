@@ -1,0 +1,48 @@
+{
+  "_ghi_chu": "Thông số nhân vật 3D cho nhân vật HƯ CẤU 'Minh'. Không dựa trên người thật. Nếu muốn dựa trên một người có thật, cần sự đồng ý bằng văn bản của người đó, và phải làm bước đó trước khi dựng mô hình.",
+  "id": "minh",
+  "ten": "Minh",
+  "vai": "em trai út, nhân vật chính",
+  "tuoi": 27,
+  "muc_thuc_te": "realistic-stylized, mục tiêu khoảng 90% thực tế về ánh sáng, da và chuyển động; không nhắm đến bản sao của bất kỳ người nào",
+  "dang_nguoi": {
+    "chieu_cao_cm": 172,
+    "than_hinh": "mảnh, vai hơi rũ",
+    "tay": "dài, móng tay ngắn"
+  },
+  "khuon_mat": {
+    "hinh_dang": "khuôn mặt thon, gò má không cao",
+    "mat": "mắt một mí, đuôi hơi cụp, quầng thâm nhẹ",
+    "mui_mieng": "mũi thẳng vừa, môi mỏng, cằm nhọn nhẹ",
+    "tay_vet": "một vết sẹo nhỏ trên lông mày trái (từ hồi nhỏ, té xe đạp)"
+  },
+  "toc": {
+    "kieu": "tóc đen ngắn hai bên, để dài hơn trên đỉnh, hơi rối",
+    "mau": "#1b1714"
+  },
+  "trang_phuc": {
+    "ngay_thuong": "áo sơ mi xám nhạt tay dài, quần kaki đen, giày vải",
+    "benh_vien": "áo khoác dạ đen dài đến gối, khăn quàng xám",
+    "nha_cu": "áo thun cổ tròn trắng đã ngả màu, quần đùi vải"
+  },
+  "dac_diem_hanh_dong": [
+    "hay đút tay vào túi áo khoác khi không biết nói gì",
+    "nhìn người khác khi họ nói, nhưng né ánh mắt khi bị hỏi",
+    "gõ ngón tay lên đùi khi suy nghĩ"
+  ],
+  "anh_sang_va_mau": {
+    "da": "tông ấm trung bình, dưới ánh đèn vàng nhà cũ trông hồng hơn",
+    "mat_da": "không bóng quá; thêm nếp nhỏ quanh mắt khi cười"
+  },
+  "seed": 20260115,
+  "tham_chieu_render": {
+    "cong_cu": "skill cong-cu-san-xuat-video (tools/blender_render.py) hoặc mo-phong-cong-viec-dao-dien để viết prompt",
+    "dinh_dang": "9:16 cho bản Shorts, 16:9 cho bản tập đầy đủ",
+    "canh_chinh": "cảnh 2 (phòng bệnh) và cảnh 6 (phòng Mẹ, đèn ngủ vàng)"
+  },
+  "gioi_han_can_biet": [
+    "Dựng nhân vật 3D thật (không chỉ ảnh) cần Blender trên máy và GPU. Theo tài liệu gốc, một cảnh có nhân vật 3D trong phòng cần khoảng 2,2 giây mỗi khung hình với GPU, tức khoảng 2–3 giờ mỗi phiên làm việc.",
+  "Một tập 10 phút ở 30 khung hình/giây là 18.000 khung hình. Nếu làm toàn bộ bằng 3D, một tập có thể mất vài chục giờ tính toán.",
+    "Khung cận mặt 'giống thật 90%' khó đạt bằng mô hình thủ công; cần mô hình quét 3D hoặc ảnh tham chiếu được phép dùng."
+  ]
+}

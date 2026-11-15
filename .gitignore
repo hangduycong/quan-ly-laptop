@@ -1,3 +1,7 @@
 agent/data/
 __pycache__/
 *.pyc
+
+# animatic dựng lại bằng phim-gia-dinh/cong-cu/tao_animatic_tap01.py
+phim-gia-dinh/animatic/*.mp4
+__pycache__/
