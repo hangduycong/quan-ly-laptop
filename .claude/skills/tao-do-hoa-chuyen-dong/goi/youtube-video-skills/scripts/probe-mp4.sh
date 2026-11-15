@@ -11,7 +11,7 @@
 set -euo pipefail
 mp4="${1:?usage: probe-mp4.sh <file.mp4> [WxH] [fps]}"
 exp_res="${2:-}"; exp_fps="${3:-}"
-q(){ ffprobe -v error -select_streams v:0 -show_entries "$1" -of csv=p=0 "$mp4" | head -1; }
+q(){ ffprobe -v error -select_streams v:0 -show_entries "$1" -of csv=p=0 "$mp4" | head -1 | cut -d, -f1; }  # cut: ffprobe 6.x in thêm dấu phẩy cuối
 w=$(q stream=width); h=$(q stream=height); codec=$(q stream=codec_name)
 rate=$(q stream=r_frame_rate); dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4")
 fps=$(awk -v r="$rate" 'BEGIN{split(r,a,"/"); printf "%.4g", (a[2]+0)?a[1]/a[2]:a[1]}')

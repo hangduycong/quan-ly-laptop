@@ -1,0 +1,15 @@
+{
+  "audio": "clip.wav",
+  "title": "Tên tập podcast",
+  "show": "Tên chương trình",
+  "cover": "logo.svg",
+  "look": "bars",
+  "durationInSeconds": 15,
+  "bg": "#101820",
+  "fg": "#FFFFFF",
+  "accent": "#F2A541",
+  "captions": [
+    {"start": 0.5, "end": 2.4, "text": "Câu phụ đề thứ nhất"},
+    {"start": 2.6, "end": 5.0, "text": "Câu phụ đề thứ hai"}
+  ]
+}
