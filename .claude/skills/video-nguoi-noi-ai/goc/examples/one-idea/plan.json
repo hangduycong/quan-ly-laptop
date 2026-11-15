@@ -1,0 +1,28 @@
+{
+  "language": "English",
+  "voice_id": "EXAVITQu4vr4xnSDxMaL",
+  "images": [
+    "portrait.jpg"
+  ],
+  "aspect_ratio": "16:9",
+  "resolution": "768P",
+  "scenes": [
+    {
+      "id": "intro",
+      "kind": "talking",
+      "text": "One idea. One short video.",
+      "heading": "One idea. One short video."
+    },
+    {
+      "id": "steps",
+      "kind": "motion",
+      "text": "Write your message, choose the lines you want to say on camera, and use motion graphics to explain the rest.",
+      "heading": "Turn your words into a film",
+      "points": [
+        "Write your message",
+        "Choose your on-camera lines",
+        "Explain the rest with motion"
+      ]
+    }
+  ]
+}
