@@ -1,0 +1,161 @@
+{
+  "_ghi_chu": "Thông số 3D cho toàn bộ nhân vật HƯ CẤU của phim 'Mùa Cuối Của Mẹ'. Không dựa trên người thật. Mục tiêu 'khoảng 90% thực tế' áp dụng cho da, ánh sáng, vải và chuyển động; khuôn mặt là thiết kế riêng cho từng nhân vật, không sao chép mặt của ai. Thông số chi tiết của Minh nằm ở minh.spec.json.",
+  "phong_cach_chung": {
+    "muc_thuc_te": "realistic-stylized, khoảng 90% thực tế",
+    "nguoi": "người miền Tây Nam Bộ, da ngăm vừa đến ngăm, nắng gió",
+    "anh_sang_nha_cu": "đèn vàng 2700K, bóng mềm",
+    "anh_sang_benh_vien": "huỳnh quang 5000K, hơi xanh",
+    "anh_sang_truong_ga": "bóng đèn trần treo dây, khói thuốc, tương phản cao",
+    "doi_chieu_tuoi": "mọi nhân vật có nếp nhăn và đốm nắng phù hợp tuổi; không làm da mịn kiểu quảng cáo"
+  },
+  "nha_ba_thu": [
+    {
+      "id": "ba-thu", "ten": "Bà Thu", "tuoi": 58, "chieu_cao_cm": 152,
+      "dang": "nhỏ người, hơi gù khi mệt",
+      "khuon_mat": "mặt tròn, gò má cao, mắt hai mí sâu, nếp nhăn khóe mắt rõ, môi mỏng mím khi lo",
+      "toc": "tóc muối tiêu búi thấp, vài sợi rơi bên thái dương",
+      "trang_phuc": ["áo bà ba nâu nhạt, quần đen", "áo bệnh viện kẻ sọc xanh", "khăn len xám quàng vai"],
+      "cu_chi": ["vuốt vết sẹo lông mày của Minh", "nếm canh rồi nhíu mày"],
+      "phien_ban_tre": "Bà Thu 19 tuổi cho tấm ảnh trắng đen: tóc dài, cầm nón lá, mặt tròn hơn"
+    },
+    {
+      "id": "nhung", "ten": "Nhung (chị Hai)", "tuoi": 36, "chieu_cao_cm": 160,
+      "dang": "gọn gàng, vai thẳng, đứng hai chân dang rộng",
+      "khuon_mat": "giống Ông Tám: cằm vuông, lông mày đậm, mắt một mí sắc",
+      "toc": "tóc đen buộc đuôi ngựa chặt",
+      "trang_phuc": ["áo sơ mi trắng xắn tay, quần tây đen", "áo mưa tiện lợi xanh dương (tập 10)"],
+      "cu_chi": ["khoanh tay khi nghe", "xả nước mạnh vào bồn khi giận"]
+    },
+    {
+      "id": "yen", "ten": "Yến (chị Ba)", "tuoi": 34, "chieu_cao_cm": 155,
+      "dang": "mảnh, hay co vai",
+      "khuon_mat": "mặt trái xoan, mắt to ướt, hay đỏ mũi khi xúc động",
+      "toc": "tóc dài ngang lưng, kẹp càng cua",
+      "trang_phuc": ["áo thun hồng nhạt, váy dài vải hoa", "áo khoác mỏng màu kem"],
+      "cu_chi": ["cầm chuỗi hạt", "né ánh mắt khi nói dối"]
+    },
+    {
+      "id": "trang", "ten": "Trang (chị Tư)", "tuoi": 31, "chieu_cao_cm": 158,
+      "dang": "chắc khỏe, tay có vết bỏng nhỏ của thợ bánh",
+      "khuon_mat": "giống Ông Hải: mắt dài, mũi thẳng, cười lộ răng khểnh",
+      "toc": "tóc ngắn ngang vai, hay đội khăn trùm tóc khi làm bánh",
+      "trang_phuc": ["tạp dề xanh dính bột", "áo thun trắng, quần jean"],
+      "cu_chi": ["lau mắt rất nhanh bằng mu bàn tay", "đứng giữa hai người đang cãi nhau"]
+    }
+  ],
+  "nha_ong_hai": [
+    {
+      "id": "ong-hai", "ten": "Ông Hải", "tuoi": 62, "chieu_cao_cm": 168,
+      "dang": "gầy, lưng hơi còng, chân phải đi hơi lệch (gãy chân năm xưa)",
+      "khuon_mat": "mặt dài, gò má hóp, mắt sâu buồn, râu lún phún bạc, da sạm nắng",
+      "toc": "tóc bạc gần hết, cắt ngắn",
+      "trang_phuc": ["áo sơ mi caro bỏ ngoài quần, áo khoác cũ có mùi dầu máy", "đồ thợ xanh (tập 12)", "đầu quấn băng, mắt sưng (tập 7–8)"],
+      "cu_chi": ["lấy tay che mặt khi xúc động", "nhìn đồng hồ ở trường gà"],
+      "phien_ban_tre": "Ông Hải khoảng 40 tuổi cho tấm ảnh: gầy, đứng nép sau"
+    },
+    {
+      "id": "ba-lan", "ten": "Bà Lan", "tuoi": 60, "chieu_cao_cm": 155,
+      "dang": "thẳng lưng, đi chậm, dáng nghiêm",
+      "khuon_mat": "mặt vuông, môi hay mím, mắt ít chớp",
+      "toc": "tóc đen nhuộm, búi gọn cao",
+      "trang_phuc": ["áo bà ba tím than", "áo dài cũ màu nâu đi đám giỗ"],
+      "cu_chi": ["lau bàn thờ", "nhìn tấm ảnh lúc tối"]
+    },
+    {
+      "id": "tai", "ten": "Tài (anh Hai)", "tuoi": 40, "chieu_cao_cm": 170,
+      "dang": "vạm vỡ, cánh tay dính dầu nhớt",
+      "khuon_mat": "mặt vuông hiền, mày rậm, cười chậm",
+      "toc": "đầu đinh",
+      "trang_phuc": ["áo thun ba lỗ xám, quần kaki ngắn dính dầu", "áo dính máu (tập 7)"],
+      "cu_chi": ["lau tay vào giẻ rất lâu khi bối rối"]
+    },
+    {
+      "id": "hong", "ten": "Hồng (vợ Tài)", "tuoi": 38, "chieu_cao_cm": 154,
+      "dang": "đầy đặn, đi nhanh",
+      "khuon_mat": "mặt tròn, má lúm, son đỏ, kẻ chân mày đậm",
+      "toc": "tóc uốn xoăn nhẹ ngang vai",
+      "trang_phuc": ["áo kiểu hoa, quần đùi, nón lá", "tạp dề tiệm tạp hóa (tập 12)"],
+      "cu_chi": ["nhét tiền vội vào túi áo", "cười to để che giấu"]
+    },
+    {
+      "id": "mai", "ten": "Mai (chị Ba)", "tuoi": 38, "chieu_cao_cm": 150,
+      "dang": "nhỏ, đi chậm, hai tay hay ôm túi vải trước ngực",
+      "khuon_mat": "mặt tròn hiền, mắt to trong, nụ cười rộng và thật",
+      "toc": "tóc dài buộc lệch, kẹp tóc nhựa hình con bướm phai màu",
+      "trang_phuc": ["áo bà ba hoa nhỏ", "tạp dề tiệm bánh (tập 12)"],
+      "cu_chi": ["đếm tiền rất chậm", "hát vọng cổ sai lời", "xếp bánh thẳng hàng"],
+      "luu_y": "Thể hiện Mai với sự tôn trọng. Khuôn mặt và cử chỉ không được biếm họa hay làm quá."
+    },
+    {
+      "id": "khang", "ten": "Khang (anh Tư)", "tuoi": 36, "chieu_cao_cm": 166,
+      "dang": "gầy, bụng hơi phệ vì rượu",
+      "khuon_mat": "mắt đỏ, mặt hơi phù (tập 4–5); da hồng hào hơn khi đã cai rượu (tập 12)",
+      "toc": "tóc dài rối",
+      "trang_phuc": ["áo sơ mi nhàu mở hai nút", "đồ thợ (tập 12)"],
+      "cu_chi": ["ngồi bệt tựa cột tre", "quỳ ở chân giường cha"]
+    },
+    {
+      "id": "diem", "ten": "Diễm (vợ Khang)", "tuoi": 33, "chieu_cao_cm": 157,
+      "dang": "gầy, móng tay sơn bong",
+      "khuon_mat": "mặt nhọn, mắt thâm",
+      "toc": "tóc nhuộm vàng đã mọc chân đen",
+      "trang_phuc": ["áo thun bó, quần lửng", "đồng phục công nhân (tập 12)"],
+      "cu_chi": ["đếm lại vé thua"]
+    },
+    {
+      "id": "phuc", "ten": "Phúc (anh Năm)", "tuoi": 34, "chieu_cao_cm": 169,
+      "dang": "rắn rỏi, thường cởi trần, có vết gà mổ trên tay",
+      "khuon_mat": "mặt góc cạnh, cười hiền khi tỉnh",
+      "toc": "tóc cắt ngắn hai bên",
+      "trang_phuc": ["cởi trần, quần đùi", "áo thun quán cơm (tập 12)"],
+      "cu_chi": ["vuốt lông gà như vuốt con", "cõng Mai"]
+    },
+    {
+      "id": "loan", "ten": "Loan (vợ Phúc)", "tuoi": 32, "chieu_cao_cm": 156,
+      "dang": "gầy, hay ngồi xổm",
+      "khuon_mat": "mặt dài, mắt hay nheo khi dò số",
+      "toc": "tóc búi củ tỏi",
+      "trang_phuc": ["áo bộ đồ bộ in hoa", "tạp dề quán cơm (tập 12)"],
+      "cu_chi": ["mấp máy môi dò số"]
+    }
+  ],
+  "tre_em": [
+    {"id": "ty", "ten": "Ty", "tuoi": 12, "cha_me": "Tài – Hồng", "net": "gầy, đeo kính, ít nói"},
+    {"id": "na", "ten": "Na", "tuoi": 8, "cha_me": "Tài – Hồng", "net": "tóc hai bím, hay hỏi"},
+    {"id": "bi", "ten": "Bi", "tuoi": 6, "cha_me": "Khang – Diễm", "net": "mũm mĩm, hay ngủ gục"},
+    {"id": "teo", "ten": "Tèo", "tuoi": 10, "cha_me": "Phúc – Loan", "net": "đen nhẻm, lanh lợi"},
+    {"id": "mit", "ten": "Mít", "tuoi": 7, "cha_me": "Phúc – Loan", "net": "tóc tém, nhút nhát"},
+    {"id": "bong", "ten": "Bông", "tuoi": 4, "cha_me": "Phúc – Loan", "net": "má phúng phính, hay níu quần cha"}
+  ],
+  "the_luc_xau": [
+    {
+      "id": "ong-sau", "ten": "Ông Sáu Lộc", "tuoi": 65, "chieu_cao_cm": 165,
+      "dang": "đậm người, đứng yên rất lâu",
+      "khuon_mat": "mặt tròn phúc hậu, đeo kính gọng vàng, cười nhẹ nhưng mắt không cười",
+      "toc": "tóc chải ngược gọn, đã bạc hai bên",
+      "trang_phuc": ["áo sơ mi trắng cài kín cổ, quần tây, giày da"],
+      "dao_cu": "tách trà sứ",
+      "luu_y": "Trông như một ông giáo về hưu. Sự đáng sợ đến từ việc không bao giờ lớn tiếng."
+    },
+    {
+      "id": "thang", "ten": "Thắng", "tuoi": 30, "chieu_cao_cm": 172,
+      "dang": "cao, gầy, hay đứng sau ông Sáu nửa bước",
+      "khuon_mat": "mặt dài, mắt láo liên",
+      "toc": "tóc vuốt keo",
+      "trang_phuc": ["áo thun đen, dây chuyền vàng to"]
+    }
+  ],
+  "nhan_vat_qua_khu": [
+    {
+      "id": "ong-tam", "ten": "Ông Tám (chỉ trong ảnh và giọng đọc)", "tuoi_trong_anh": 30,
+      "khuon_mat": "cao lớn, cằm vuông, lông mày đậm (Nhung giống ông), cười rất to",
+      "trang_phuc": "áo sơ mi ngắn tay, đứng trước xe tải cũ"
+    }
+  ],
+  "uu_tien_dung_3d": [
+    "Bà Thu, Minh, Ông Hải, Nhung: cận mặt nhiều nhất, cần chi tiết cao nhất.",
+    "Mai: cần nhất quán biểu cảm qua các tập.",
+    "Tấm ảnh trắng đen 3 người: dựng một lần, dùng lại ở tập 7, 8, 9, 12.",
+    "Trẻ em và nhân vật phụ: có thể dùng mức chi tiết thấp hơn trong khung rộng."
+  ]
+}

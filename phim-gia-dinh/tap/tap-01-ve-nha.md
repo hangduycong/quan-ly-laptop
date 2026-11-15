@@ -1,6 +1,6 @@
 # Tập 1: Về nhà
 
-**Thời lượng mục tiêu:** khoảng 10 phút (khoảng 1.500 chữ thoại + hành động)
+**Thời lượng mục tiêu:** khoảng 10–11 phút (8 cảnh)
 **Bối cảnh:** Miền Tây, một ngày mưa cuối năm. Nhà cổ hai tầng, mái ngói, có sân sau và vườn chuối.
 
 ---
@@ -89,19 +89,47 @@
 
 *Điện thoại Yến rung. Cô nhìn màn hình rồi nhấc máy, đi ra xa vài bước.*
 
-**YẾN:** (điện thoại, nhỏ) Dạ. Con biết rồi. Bảo đang ở nhà con, con sẽ về sau.
+**YẾN:** (điện thoại, nhỏ) Dạ, anh Hai. Mẹ qua cơn rồi. Dạ... em biết. Anh đừng nói với ba vội.
 
 *Yến cúp máy, quay lại, mặt không đổi.*
 
 **NHUNG:** Ai gọi?
 
-**YẾN:** Thằng Bảo. Nó hỏi khi nào mình về nhà.
+**YẾN:** Bạn em. Hỏi thăm mẹ.
 
 *Nhung nhìn Yến lâu. Yến né ánh mắt.*
 
 ---
 
-## Cảnh 4 · Nhà cũ, buổi chiều (4:00–6:00)
+## Cảnh 3b · Trường gà ven sông, cùng lúc (4:00–5:30)
+
+*Một bãi đất trống sau vườn dừa, che bạt xanh. Tiếng người la hét, tiếng tiền giấy đập vào tay. Không thấy gà, chỉ thấy lưng người chen nhau và ánh đèn vàng treo trên dây điện.*
+
+*Ông Hải, 62 tuổi, áo sơ mi bỏ ngoài quần, đứng ở rìa đám đông, cạnh chiếc xe tải nhỏ. Ông không xem, chỉ nhìn đồng hồ.*
+
+*Một người đàn ông trẻ đeo dây chuyền vàng (tay chân của ông Sáu) đi lại, nhét vào tay ông Hải một xấp giấy ghi tên.*
+
+**TAY CHÂN:** Chú Hải. Tối nay chở mấy ông này về thị xã. Anh Sáu dặn đi đường trong, đừng đi quốc lộ.
+
+**ÔNG HẢI:** Tối nay tôi bận.
+
+**TAY CHÂN:** (cười) Chú bận gì? Thằng Tư nhà chú còn nợ bên này hai trăm. Chú không chạy thì ai trả?
+
+*Ông Hải không đáp. Điện thoại trong túi ông rung. Màn hình hiện: "Tài". Ông nhấc máy.*
+
+**ÔNG HẢI:** Gì?
+
+*Ông nghe. Mặt ông đổi sắc. Ông quay lưng lại đám đông, nói nhỏ.*
+
+**ÔNG HẢI:** Nằm viện nào? ... Ừ. Ừ. Thôi, ba biết rồi.
+
+*Ông cúp máy, nhìn về phía con đường đất dẫn ra lộ. Tiếng hò reo phía sau bùng lên. Ông đứng im một lúc, rồi mở cửa xe tải, leo lên ghế lái, cầm xấp giấy tay chân vừa đưa.*
+
+*Ông không lái ra hướng bệnh viện.*
+
+---
+
+## Cảnh 4 · Nhà cũ, buổi chiều (5:30–7:00)
 
 *Mưa nhỏ dần. Minh lái xe máy đến con ngõ nhỏ. Cổng gỗ đã cũ, sơn bong tróc. Minh đẩy cổng, bước vào sân.*
 
@@ -131,7 +159,7 @@
 
 ---
 
-## Cảnh 5 · Bữa cơm đầu tiên, tối (6:00–8:30)
+## Cảnh 5 · Bữa cơm đầu tiên, tối (7:00–9:00)
 
 *Bàn gỗ lớn giữa nhà. Ba người ngồi: Minh, Trang, và Nhung vừa tới. Yến không có mặt, vì còn ở bệnh viện. Có một chén cơm để trống.*
 
@@ -177,7 +205,7 @@
 
 ---
 
-## Cảnh 6 · Phòng Mẹ, tầng hai, đêm (8:30–10:00)
+## Cảnh 6 · Phòng Mẹ, tầng hai, đêm (9:00–10:30)
 
 *Phòng tối. Có ánh đèn ngủ vàng. Tủ áo gỗ cũ đứng sát tường. Minh đứng trước tủ, mở cánh tủ bên trái.*
 
@@ -217,7 +245,7 @@
 
 ---
 
-## Cảnh 7 · Kết tập (10:00–10:30)
+## Cảnh 7 · Kết tập (10:30–11:00)
 
 *Sân sau, sáng hôm sau. Minh đứng bên giếng nước, mở phong bì. Chưa rút lá thư ra. Chỉ nhìn tờ giấy gấp đôi bên trong, rồi gấp lại.*
 
@@ -236,5 +264,5 @@
 - **Ống kính:** phần lớn là cận cảnh và trung cảnh; sân nhà là toàn cảnh có hai ghế nhựa để báo hiệu những điều cũ.
 - **Âm thanh:** tiếng mưa xuyên suốt, đến cảnh 6 thì ngừng. Cảnh 5 chỉ có tiếng đồng hồ và tiếng đũa.
 - **Màu:** tông ấm ở nhà cũ, lạnh ở bệnh viện. Phong bì có màu nâu đậm hơn các cảnh khác.
-- **Mức độ quan trọng cho các tập sau:** phong bì (tập 1, 6, 8, 9, 11), ghế gãy (tập 1, 12), cá kho tiêu (tập 1, 11).
-- **Số từ thoại ước tính:** khoảng 1.100 từ thoại + hành động. Đọc thành tiếng sẽ được khoảng 8–9 phút, nếu cần đủ 10 phút thì thêm một cảnh 2 phút ở tập sau.
+- **Đồ vật cài cho các tập sau:** phong bì (tập 5, 6, 8, 11), ghế gãy (tập 12), cá kho tiêu (tập 2, 11).
+- **Cảnh 3b** giới thiệu tuyến đá gà: quay từ lưng đám đông, không quay gà chọi nhau. Ông Hải chọn chạy xe cho ông Sáu thay vì vào viện; khán giả biết điều này trước các con.

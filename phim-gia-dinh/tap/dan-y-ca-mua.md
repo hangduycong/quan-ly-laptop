@@ -1,24 +1,34 @@
 # Dàn ý cả mùa: 12 tập × khoảng 10 phút
 
-Mỗi tập có một cảnh bữa cơm, một điểm đổi chiều ở cuối, và một câu hỏi để tập sau trả lời.
+Hai tuyến chạy song song:
+- **Tuyến A (gia đình):** lá thư của Ông Tám và lời hứa Bà Thu đã phá.
+- **Tuyến B (nguy hiểm):** nợ cờ bạc, đá gà, lô đề của nhà Ông Hải kéo theo ông Sáu Lộc và căn nhà của Mẹ.
 
-| Tập | Tiêu đề | Trọng tâm | Điểm đổi chiều cuối tập | Câu hỏi mở |
-|---|---|---|---|---|
-| 1 | Về nhà | Minh về khi Mẹ nhập viện. Gặp lại các chị. | Minh tìm thấy phong bì thư cũ trong tủ áo Mẹ, chưa mở. | Thư viết gì? |
-| 2 | Bữa cơm đầu | Cả nhà ngồi chung lần đầu sau nhiều năm. Nhung và Yến cãi nhau về ai chăm Mẹ. | Ông Hải đến, và Bà Lan gọi điện hỏi có chuyện gì. | Ông Hải có biết về lá thư không? |
-| 3 | Chị Tư | Trang kể chuyện Minh hồi nhỏ, điều Minh không nhớ. | Trang nói: "Hồi đó Mẹ nói sẽ kể anh khi anh lớn." | Mẹ định kể điều gì? |
-| 4 | Bảo | Bảo hỏi về ông Tám. Yến buộc phải trả lời. | Bảo chụp ảnh ông Tám trong ví Yến, và Minh nhìn thấy. | Ảnh ông Tám có gì khác thường? |
-| 5 | Anh Tư, Anh Năm | Khang và Phúc đến thăm Mẹ. Họ bàn chuyện nhà đất. | Phúc để lộ rằng Ông Hải đã viết di chúc. | Di chúc có tên Minh không? |
-| 6 | Mở thư | Minh mở thư nhưng chưa đọc hết. Nhung phát hiện. | Nhung giật lá thư và chạy ra khỏi nhà. | Nhung đọc được gì? |
-| 7 | Bà Lan | Minh đến gặp Bà Lan để hỏi về di chúc. Bà Lan kể về những năm đầu. | Bà Lan đưa cho Minh một tấm ảnh cũ có Mẹ và Ông Hải. | Mẹ và Ông Hải đã quen nhau bao lâu rồi? |
-| 8 | Đêm bệnh viện | Mẹ tỉnh lại. Minh là người ở bên. | Mẹ nói: "Con đọc đi, mẹ không đọc nổi nữa." | Lá thư có lời hứa gì? |
-| 9 | Lời hứa | Nội dung lá thư được hé lộ một phần. Các chị nghe lại chuyện cũ. | Nhung khóc lần đầu tiên trong phim. | Ai đã từ chối lời hứa? |
-| 10 | Người thứ tư | Người con thứ tư của Ông Hải xuất hiện, và mối quan hệ với Minh thay đổi. | Mẹ quyết định gọi cả nhà đến bữa cơm cuối. | Bữa cơm cuối có ai không đến? |
-| 11 | Bữa cơm cuối | Cả nhà có mặt. Bí mật được nói ra. | Bà Thu nói sự thật về lời hứa với Ông Tám. | Sau sự thật này, nhà sẽ ra sao? |
-| 12 | Mùa mới | Sau khi Mẹ ổn định, mỗi người nhận một việc để tiếp tục. Minh ở lại. | Minh ở lại nhà, và cả nhà cùng chụp một bức ảnh có Minh. | (kết thúc mùa) |
+Hai tuyến gặp nhau ở tập 8. Mọi tập đều có một bữa cơm hoặc việc nhà, và kết bằng một điểm đổi chiều.
 
-## Ghi chú cho mỗi tập
+| Tập | Tiêu đề | Trọng tâm | Điểm đổi chiều cuối tập |
+|---|---|---|---|
+| 1 | Về nhà | Minh về khi Mẹ đột quỵ. Ông Hải ở trường gà, nghe tin nhưng không đến. Bữa cơm căng thẳng. | Minh tìm thấy phong bì "Đừng để các con biết trước". |
+| 2 | Hai nhà | Ông Hải lén đến bệnh viện lúc nửa đêm. Hồng (vợ anh Hai Tài) hỏi mượn tiền Minh. | Hai người lạ đến nhà Bà Thu hỏi: "Ông Hải có ở đây không?" |
+| 3 | Chị Ba Mai | Minh gặp Mai lần đầu, thấy chị hiền và khờ. Mai nhờ Minh chở đi "đưa giùm phong bì". | Minh thấy Mai đưa phong bì trắng cho một người mặc sắc phục công an ở quán cà phê. |
+| 4 | Trường gà | Minh đến trường gà tìm cha. Thấy anh Năm Phúc cá cược, anh Tư Khang say. Cha con đối mặt. | Khang thua trắng, buột miệng: "Con lỡ cầm sổ đỏ nhà dì Thu rồi." |
+| 5 | Sổ đỏ | Cả nhà phát hiện sổ đỏ mất. Nhung đổ lỗi bên nhà Ông Hải. Nợ đề của Hồng và Loan cũng lộ ra. | Minh mở thư, đọc được dòng đầu. Nhung đứng sau lưng từ lúc nào. |
+| 6 | Nhung | Nhung giật thư, đọc, rồi lao đến trường gà tìm Ông Hải. Minh đuổi theo. | Nhung nghe chính miệng ông Sáu nhắc tên Ông Tám: "Ba con cũng nợ tôi." |
+| 7 | Bà Lan | Minh đến gặp Bà Lan. Bà kể về những năm đầu, đưa tấm ảnh ba người thời trẻ. | Ông Hải bị người của ông Sáu đánh, đưa vào đúng bệnh viện Mẹ đang nằm. |
+| 8 | Đêm bệnh viện | Hai người, hai phòng, cùng một hành lang. Mẹ tỉnh, nhờ Minh đọc thư cho mình nghe. | Thư lộ hai điều đầu. Mẹ nói: "Ba Hải không có lỗi. Lỗi là mẹ." |
+| 9 | Lời hứa | Các chị nghe chuyện cũ. Nhung khóc lần đầu. Mai nghe lỏm, hiểu ra phong bì là tiền xấu. | Mai mang hết phong bì đến trả cho ông Sáu, rồi mất tích. |
+| 10 | Tìm chị Ba | Hai nhà lần đầu làm chung một việc: đi tìm Mai. Phúc dẫn đường trong trường gà. Minh lén ghi âm. | Tìm được Mai. Minh có trong tay đoạn ghi âm ông Sáu nói chuyện đưa tiền cho công an. Ông Hải: "Đưa cho ba. Ba làm chứng." |
+| 11 | Bữa cơm cuối | Mẹ về nhà. Hai nhà ngồi chung một mâm lần đầu. Ông Hải nói thật. Hồng, Diễm, Loan thú nhận nợ. | Mẹ đọc trọn lá thư. Đoàn điều tra tỉnh đến; Ông Hải đi theo làm chứng. Sổ đỏ được trả lại. |
+| 12 | Mùa mới | Vài tháng sau: đường dây bị phá, người nhận tiền bị kỷ luật. Mỗi người trả giá và làm lại. | Minh sửa chiếc ghế gãy. Hai nhà chụp chung một tấm ảnh, lần đầu có Minh trong ảnh. |
 
-- Đầu tập: một cảnh ngắn (dưới 20 giây) gợi lại điều đã xảy ra, không tóm tắt lại toàn bộ.
-- Giữa tập: một cảnh bữa cơm hoặc một cảnh làm việc nhà (nấu ăn, giặt, dọn đồ cũ).
-- Cuối tập: điểm đổi chiều, rồi nhạc nền nhỏ dần.
+## Hậu quả cho từng nhân vật (giải quyết ở tập 11–12)
+
+| Nhân vật | Cái giá | Cách làm lại |
+|---|---|---|
+| Ông Hải | Án treo vì từng tiếp tay, mất nghề lái xe một thời gian | Ra làm chứng, về phụ Tài sửa xe |
+| Khang và Diễm | Mất trắng tiền bạc, Bi suýt bị bỏ quên ở quán nhậu | Cai rượu, Khang theo Tài học nghề |
+| Phúc | Bán hết bầy gà | Mở quán cơm nhỏ, vợ là Loan đứng bếp |
+| Hồng và Loan | Nợ đề phải trả dần | Cùng nhau trả nợ, có người theo dõi tiền chợ |
+| Mai | Bị lợi dụng | Về làm phụ ở tiệm bánh của Trang |
+| Bà Thu | Phải nói ra bí mật | Được các con tha thứ |
+| Minh | Bị đe dọa vì đoạn ghi âm | Ở lại quê, mở phòng thu nhỏ |
