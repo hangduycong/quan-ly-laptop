@@ -1,11 +1,13 @@
 ---
 name: chinh-sua-video-dai
-description: Chỉnh sửa Video Dài — Edit any video by conversation. Transcribe, cut, color grade, generate overlay animations, burn subtitles — for talking heads, montages, tutorials, travel, interviews. No presets, no menus. Ask questions, confirm the plan, execute, iterate, persist. Production-correctness rules are hard; everything else is artistic freedom.
+description: Chỉnh sửa Video Dài — Edit long videos (lectures, podcasts, livestreams, multi-hour footage) by conversation, chapter by chapter. Also works for any video. Transcribe, cut, color grade, generate overlay animations, burn subtitles — for talking heads, montages, tutorials, travel, interviews. No presets, no menus. Ask questions, confirm the plan, execute, iterate, persist. Production-correctness rules are hard; everything else is artistic freedom.
 ---
 
 # Chỉnh sửa Video Dài
 
 > Nguồn: https://github.com/browser-use/video-use (MIT). Skill này đặt tại `.claude/skills/chinh-sua-video-dai/`.
+>
+> **Với video dài** (từ ~20 phút hoặc nhiều giờ nguồn quay), đọc và làm theo mục **"Video dài"** bên dưới, ngay sau **The process**.
 
 ## Principle
 
@@ -104,6 +106,102 @@ For animations, create `<edit>/animations/slot_<id>/` with `Bash` and spawn a su
 
    If anything fails: fix → re-render → re-eval. **Cap at 3 self-eval passes** — if issues remain after 3, flag them to the user rather than looping forever. Only present the preview once the self-eval passes.
 8. **Iterate + persist.** Natural-language feedback, re-plan, re-render. Never re-transcribe. Final render on confirmation. Append to `project.md`.
+
+## Video dài (từ khoảng 20 phút trở lên, hoặc nhiều giờ nguồn quay)
+
+Phần này bổ sung cho **The process** ở trên khi tổng thời lượng nguồn dài (bài giảng, podcast, livestream, hội thảo, phỏng vấn dài, vlog nhiều ngày). Hard Rules vẫn giữ nguyên. Khác biệt chính: không đọc, không cắt và không render cả video trong một lượt, mà chia thành **từng phần (part)** khi chuyển giọng nói thành chữ và **từng chương (chapter)** khi dựng.
+
+### 1. Kiểm kê và ước lượng quy mô
+
+- `ffprobe` mọi nguồn, ghi tổng thời lượng, độ phân giải, fps, số kênh/track âm thanh vào `edit/project.md`.
+- Nếu các nguồn **khác fps hoặc độ phân giải**, chốt ngay một định dạng đầu ra (ví dụ `1920×1080@30`) và luôn truyền `--fps` cố định cho mọi lần render, vì bước ghép chương cuối cùng dùng `-c copy` và cần mọi chương đồng nhất.
+- Kiểm tra dung lượng đĩa trước: mỗi lần render tạo `clips_graded/`, `base.mp4` và file tạm loudnorm, có thể gấp 2–3 lần dung lượng thành phẩm.
+
+### 2. Chia nguồn rất dài trước khi chuyển giọng nói thành chữ
+
+`transcribe.py` tách âm thanh mono 16 kHz (khoảng 115 MB mỗi giờ) rồi upload một lần, timeout 30 phút. Với một file nguồn dài hơn khoảng **90 phút**, hoặc khi upload bị lỗi/timeout, chia nó thành các phần 20–40 phút, **cắt tại khoảng lặng** để không cắt giữa từ:
+
+```bash
+# Tìm khoảng lặng ≥ 0.6s gần mốc cần chia
+ffmpeg -hide_banner -i SRC.mp4 -af silencedetect=noise=-35dB:d=0.6 -f null - 2>&1 | grep silence_
+# Cắt tại giữa khoảng lặng đã chọn (re-encode chất lượng cao để mốc cắt chính xác, không bị nhảy về keyframe)
+ffmpeg -ss <T0> -to <T1> -i SRC.mp4 -c:v libx264 -crf 14 -preset fast -c:a aac -b:a 320k <videos_dir>/parts/SRC_p01.mp4
+```
+
+- Đặt tên `SRC_p01.mp4`, `SRC_p02.mp4`… Mỗi phần là một nguồn riêng trong EDL; transcript cũng theo tên đó (`transcripts/SRC_p01.json`).
+- Không ghi đè file gốc. Ghi lại các mốc chia (`T0`, `T1`) vào `project.md`.
+- Sau đó chạy `transcribe_batch.py <videos_dir>/parts` như bình thường (có cache theo từng file, chạy lại chỉ xử lý phần còn thiếu). Nếu chỉ có vài nguồn dài, giữ `--workers` thấp để tránh lỗi rate limit.
+
+### 3. Đọc transcript theo bản đồ chương, không đọc một lượt
+
+`takes_packed.md` của nhiều giờ nguồn vẫn rất dài. Không đọc toàn bộ vào ngữ cảnh một lần.
+
+1. Chạy `pack_transcripts.py` như bình thường.
+2. Dùng tool `Agent` tạo **song song** một sub-agent cho mỗi phần/nguồn (giống Hard Rule 10). Mỗi sub-agent chỉ đọc đoạn `## <tên nguồn>` của mình trong `takes_packed.md` và trả về danh sách chủ đề: `[start-end] tiêu đề — tóm tắt 1 câu — chất lượng (tốt / lặp / nói vấp / lạc đề / im lặng dài)`.
+3. Gộp kết quả thành `edit/outline.md`: bản đồ chương của toàn bộ nguồn, kèm thời lượng mỗi đoạn. Đây là tài liệu chính để trao đổi cấu trúc với người dùng.
+4. Chỉ đọc chi tiết transcript của chương đang dựng.
+
+### 4. Chiến lược ở hai cấp
+
+Khi đề xuất chiến lược (bước 4 của The process), trình bày:
+
+- **Cấp cấu trúc:** giữ / bỏ / đảo thứ tự chương nào, thời lượng đích của từng chương và tổng, có mở đầu (hook/trailer), mốc chương YouTube, outro hay không.
+- **Cấp cắt:** mức độ cắt chung (chỉ bỏ im lặng và nói vấp, hay rút gọn nội dung mạnh), cách xử lý câu lặp, quy tắc giữ nhịp cho mọi chương để thành phẩm đồng đều.
+
+Chờ người dùng xác nhận cả hai cấp rồi mới dựng.
+
+### 5. Dựng và render theo từng chương
+
+`render.py` lấy thư mục chứa `edl.json` làm thư mục làm việc: nó ghi `clips_graded/`, `base.mp4`, `master.srt` vào đó và đọc transcript từ `<thư mục đó>/transcripts/`. Vì vậy mỗi chương có thư mục riêng và một symlink tới transcript dùng chung:
+
+```bash
+mkdir -p edit/chapters/ch01
+ln -sfn ../../transcripts edit/chapters/ch01/transcripts
+# viết edit/chapters/ch01/edl.json (đường dẫn nguồn để tuyệt đối)
+python helpers/render.py edit/chapters/ch01/edl.json -o edit/chapters/ch01/ch01.mp4 --draft --fps 30 --no-loudnorm
+```
+
+- Mỗi chương nên dài 3–15 phút. Một EDL có hàng trăm đoạn rất khó kiểm tra và render lại.
+- Có thể giao từng chương cho sub-agent dựng song song, với editor brief gồm: chiến lược đã duyệt, đoạn transcript của chương, thời lượng đích, quy tắc nhịp chung.
+- Kiểm tra mốc cắt bằng `--draft` (720p, nhanh), sau đó `--preview`, cuối cùng render thật. Chỉ render lại chương có thay đổi.
+- Render các chương với **cùng `--fps`, cùng preset/grade và luôn `--no-loudnorm`**. Chuẩn hóa âm lượng một lần ở bước cuối để mức âm đồng đều giữa các chương.
+- Phụ đề: dùng `--build-subtitles` cho từng chương (mỗi chương có `master.srt` riêng với mốc thời gian tính từ đầu chương).
+
+### 6. Ghép chương và hoàn thiện
+
+```bash
+# Ghép không mất chất lượng (mọi chương phải cùng codec, độ phân giải, fps)
+printf "file '%s'\n" $(pwd)/edit/chapters/ch*/ch*.mp4 > edit/_chapters_concat.txt
+ffmpeg -f concat -safe 0 -i edit/_chapters_concat.txt -c copy edit/joined.mp4
+# Chuẩn hóa âm lượng một lần cho toàn bộ (video giữ nguyên, chỉ encode lại âm thanh)
+ffmpeg -i edit/joined.mp4 -c:v copy -af loudnorm=I=-14:TP=-1:LRA=11 -c:a aac -b:a 192k -ar 48000 edit/final.mp4
+```
+
+- Nếu ghép bị lỗi hoặc âm thanh lệch hình, kiểm tra từng chương bằng `ffprobe` (codec, fps, timebase, sample rate) và render lại chương lệch với cùng tham số.
+- **Mốc chương (YouTube chapters):** tính thời điểm bắt đầu mỗi chương bằng tổng thời lượng các chương trước (`ffprobe -show_entries format=duration`), ghi vào `edit/youtube_chapters.txt` dạng `00:00 Mở đầu`. Chương đầu phải bắt đầu ở `00:00`.
+- **Phụ đề cho video dài:** ưu tiên xuất file `.srt` riêng (sidecar) để tải lên nền tảng thay vì burn vào hình, trừ khi người dùng yêu cầu. Ghép các `master.srt` của từng chương bằng cách cộng thêm độ lệch (tổng thời lượng các chương trước) vào mọi mốc thời gian rồi đánh số lại.
+
+### 7. Kiểm tra (self-eval) cho video dài
+
+Không thể xem `timeline_view` ở mọi điểm cắt khi có hàng trăm điểm. Thay vào đó:
+
+- Kiểm tra kỹ từng chương khi render chương đó (như bước 7 của The process, giới hạn 3 lượt mỗi chương).
+- Trên `final.mp4`: kiểm tra mọi **điểm nối giữa các chương** (±2 giây), 2 giây đầu và cuối, cùng một mẫu ngẫu nhiên khoảng 10% điểm cắt.
+- `ffprobe` thời lượng `final.mp4` phải bằng tổng thời lượng các chương (sai lệch < 0,1 giây mỗi chương).
+- Đo `ebur128` cho toàn bộ và theo từng chương; báo cáo chương nào lệch quá 2 LU so với phần còn lại.
+
+### 8. Ghi nhớ tiến độ
+
+Phiên làm việc với video dài thường kéo dài và có thể bị tóm tắt ngữ cảnh. Luôn cập nhật `edit/project.md` với bảng trạng thái chương:
+
+```markdown
+| Chương | Nguồn / khoảng thời gian | Đích | Trạng thái | Ghi chú |
+|--------|--------------------------|------|------------|---------|
+| ch01   | SRC_p01 0–1260s          | 6m   | đã duyệt   |         |
+| ch02   | SRC_p02 0–980s           | 5m   | đang dựng  | bỏ đoạn 410–520s lạc đề |
+```
+
+Khi bắt đầu lại, đọc bảng này và `outline.md` trước rồi tiếp tục từ chương chưa xong. Không chuyển lại giọng nói thành chữ, không render lại chương đã duyệt.
 
 ## Cut craft (techniques)
 
