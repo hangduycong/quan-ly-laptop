@@ -1,0 +1,34 @@
+{
+  "comment": "Giá trị khởi đầu đã dùng tốt trên vlog và bài giảng thật. Ghi đè theo từng video bằng settings.py (system/videos/<v>/settings.json). Mục davinci chỉ dùng khi đã mua DaVinci Resolve Studio.",
+  "paths": { "raw": "raw video", "export": "export edited video", "videos": "system/videos" },
+  "timeline": { "width": null, "height": null, "fps": null },
+  "cut": {
+    "pre_pad": 0.08, "post_pad": 0.12,
+    "pauses_enabled": true, "max_pause": 1.0, "pause_keep": 0.6,
+    "scene_lead_in": 0.5, "scene_tail": 0.6,
+    "silence_db": -43, "silence_min": 0.25, "silence_cover": 0.85,
+    "onset_window": 0.25, "offset_window": 0.3,
+    "audio_fade": 0.03
+  },
+  "zoom": { "enabled": true, "jump": 1.075, "punch": 1.15 },
+  "grade": { "lut": null, "clips": [] },
+  "audio": {
+    "voice": { "target_lufs": -16.0, "true_peak": -2.0, "lra": 11.0, "channel": "auto", "eq": false, "denoise": false }
+  },
+  "music": { "full_lufs": -16, "duck_db": -14, "ramp_up": 1.2, "ramp_down": 1.0, "lead": 0.9, "crossfade": 2.5, "sfx_db": -10 },
+  "captions": {
+    "chars_per_line": 42, "stretch_to": 50, "pause_split": 0.6, "max_cue": 3.2, "min_cue": 0.9, "end_after_word": 0.25,
+    "style": { "font": "DejaVu Sans", "size_at_1080": 48, "position_y_from_bottom": 0.11, "outline": 2, "shadow": 1, "bold": false },
+    "standard_language": { "words": {}, "phrases": {} }
+  },
+  "render": { "crf": 18, "preset": "medium", "draft_height": 720, "draft_crf": 28, "jobs": 0 },
+  "export": { "audio_bitrate": "320k" },
+  "transcribe": { "provider": "elevenlabs", "model": "scribe_v1", "language": "auto", "diarize": true, "audio_events": true },
+  "davinci": {
+    "template_timeline_name": "YOUR TEMPLATE TIMELINE",
+    "bins": { "footage": "01_Footage", "audio": "02_Audio", "graphics": "03_Graphics", "timelines": "04_Timelines" },
+    "dialogue_track": 1, "music_track": 2, "sfx_track": 3,
+    "input_scaling": "scaleToCrop",
+    "normalize": { "mode": "ITU-R BS.1770-4", "target_level": -2.0, "target_loudness": -16.0, "set_level": "independent" }
+  }
+}
