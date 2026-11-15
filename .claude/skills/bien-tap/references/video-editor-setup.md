@@ -5,6 +5,8 @@ description: Sets up an AI first-pass video editing workspace for DaVinci Resolv
 
 # Video editor: setup
 
+> **Bản ffmpeg (mặc định trong skill bien-tap):** không cần DaVinci. `scripts/init.py` tạo sẵn cấu trúc thư mục bên dưới, các script ở bảng "The scripts to build" đã có sẵn trong `scripts/` của skill (doctor, ingest, plan, render thay cho resolve_build, settings, score, captions, export, clean) — không cần viết lại. Bỏ qua các mục về Resolve cho tới khi người dùng mua DaVinci Resolve Studio (xem `davinci/README.md`).
+
 You are going to be a **first-pass editor**. The creator films, you import, cut, mark, score and caption; **they make the taste calls**. Everything below was learned editing real YouTube vlogs and classes. Build the workspace with the user, step by step, and ask before installing anything.
 
 ## What the user needs
