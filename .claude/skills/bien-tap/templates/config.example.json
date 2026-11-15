@@ -1,0 +1,28 @@
+{
+  "comment": "Starting defaults that worked on real vlogs and classes. Per-video overrides go in system/videos/<v>/settings.json.",
+  "paths": { "raw": "raw video", "export": "export edited video", "videos": "system/videos" },
+  "resolve": {
+    "template_timeline_name": "YOUR TEMPLATE TIMELINE",
+    "bins": { "footage": "01_Footage", "audio": "02_Audio", "graphics": "03_Graphics", "timelines": "04_Timelines" },
+    "dialogue_track": 1, "music_track": 2, "sfx_track": 3
+  },
+  "timeline": { "width": null, "height": null, "input_scaling": "scaleToCrop" },
+  "cut": {
+    "pre_pad": 0.08, "post_pad": 0.12,
+    "pauses_enabled": true, "max_pause": 0.5, "pause_keep": 0.3,
+    "scene_lead_in": 0.5, "scene_tail": 0.6,
+    "silence_db": -43, "silence_min": 0.25, "silence_cover": 0.85,
+    "onset_window": 0.25, "offset_window": 0.3
+  },
+  "zoom": { "enabled": true, "jump": 1.075, "punch": 1.15 },
+  "audio": {
+    "normalize": { "enabled": true, "mode": "ITU-R BS.1770-4", "target_level": -2.0, "target_loudness": -16.0, "set_level": "independent" }
+  },
+  "music": { "full_lufs": -16, "duck_db": -14, "ramp_up": 1.2, "ramp_down": 1.0, "lead": 0.9, "tail": 0.3 },
+  "captions": {
+    "chars_per_line": 42,
+    "style": { "font": "YOUR FONT", "size": 68, "position_y_from_bottom": 0.11, "drop_shadow": true },
+    "standard_language": { "words": {}, "phrases": {} }
+  },
+  "transcribe": { "language": "auto", "verbatim": true }
+}
