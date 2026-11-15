@@ -11,10 +11,25 @@ Phim dài tập tình cảm gia đình, 12 tập × khoảng 10 phút. Nhân v�
 | `tap/tap-01-…md` → `tap/tap-12-…md` | Kịch bản đầy đủ từng tập, có mốc thời gian theo cảnh và ghi chú sản xuất |
 | `nhan-vat-3d/minh.spec.json` | Thông số 3D chi tiết của Minh |
 | `nhan-vat-3d/dan-nhan-vat.json` | Thông số 3D cho tất cả nhân vật còn lại, trẻ em, thế lực xấu và Ông Tám (trong ảnh) |
+| `nhan-vat-3d/chuoi-nhan-dang.json` | 19 chuỗi nhận dạng (30–50 từ) dán nguyên văn vào mọi prompt |
+| `nhan-vat-3d/prompt-anh-nhan-vat.md` | 26 prompt GPT Image 2.5: chân dung khóa nhận dạng, bảng 3 góc, bảng biểu cảm, ảnh cũ trắng đen, mẫu chỉnh sửa |
+| `tap/tap-01-danh-sach-canh-quay.md` | Danh sách 93 cảnh quay tập 1: luật hình ảnh, bối cảnh, mức rủi ro |
+| `tap/tap-01-prompt-hinh-anh.md` | 8 prompt bối cảnh trống + keyframe (GPT Image 2.5) và chuyển động (Kling 3.0) cho 88 cảnh tạo AI |
+| `cong-cu/` | Dữ liệu cảnh tập 1 (`tap01_du_lieu.py`), chuỗi nhận dạng, script sinh prompt và animatic |
+| `animatic/tap-01-animatic.mp4` | Animatic tập 1 (7:41, thẻ cảnh + phụ đề + âm nền). Không lưu trong git; tạo lại bằng lệnh dưới |
 
 ## Thời lượng
 
 Mỗi tập khoảng 750–1.450 chữ (thoại + hành động). Phim tâm lý có nhiều khoảng lặng, nên ước khoảng 9–11 phút mỗi tập. Tập 6, 7, 8 ngắn hơn; nếu quay nhịp nhanh có thể chỉ khoảng 8–9 phút, khi đó kéo dài các cảnh không lời (cảnh xe máy, hành lang bệnh viện) hoặc thêm một cảnh bếp.
+
+## Tạo lại prompt và animatic
+
+```bash
+python3 phim-gia-dinh/cong-cu/tao_prompt_tap01.py     # → tap/tap-01-prompt-hinh-anh.md
+python3 phim-gia-dinh/cong-cu/tao_animatic_tap01.py   # → animatic/tap-01-animatic.mp4 (cần Pillow + ffmpeg)
+```
+
+Sửa cảnh trong `cong-cu/tap01_du_lieu.py` (giữ khớp số cảnh và thời lượng với `tap-01-danh-sach-canh-quay.md`), rồi chạy lại hai lệnh trên.
 
 ## Quy trình sản xuất gợi ý (dùng các skill trong repo)
 
