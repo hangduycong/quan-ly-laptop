@@ -16,6 +16,7 @@ Phim dài tập tình cảm gia đình, 12 tập × khoảng 10 phút. Nhân v�
 | `tap/tap-01-danh-sach-canh-quay.md` | Danh sách 93 cảnh quay tập 1: luật hình ảnh, bối cảnh, mức rủi ro |
 | `tap/tap-01-prompt-hinh-anh.md` | 8 prompt bối cảnh trống + keyframe (GPT Image 2.5) và chuyển động (Kling 3.0) cho 88 cảnh tạo AI |
 | `cong-cu/` | Dữ liệu cảnh tập 1 (`tap01_du_lieu.py`), chuỗi nhận dạng, script sinh prompt và animatic |
+| `nhan-vat-3d/blender/` | 7 nhân vật tập 1 dựng bằng Blender: `<tên>.glb` (mô hình) và `<tên>_bang.jpg` (trước / ba phần tư / sau / cận mặt), `tap01_dan-nhan-vat.jpg` (bảng tổng) |
 | `animatic/tap-01-animatic.mp4` | Animatic tập 1 (7:41, thẻ cảnh + phụ đề + âm nền). Không lưu trong git; tạo lại bằng lệnh dưới |
 
 ## Thời lượng
@@ -30,6 +31,16 @@ python3 phim-gia-dinh/cong-cu/tao_animatic_tap01.py   # → animatic/tap-01-anim
 ```
 
 Sửa cảnh trong `cong-cu/tap01_du_lieu.py` (giữ khớp số cảnh và thời lượng với `tap-01-danh-sach-canh-quay.md`), rồi chạy lại hai lệnh trên.
+
+## Nhân vật 3D bằng Blender (tập 1)
+
+```bash
+uv venv --python 3.13 .venv-bpy && uv pip install --python .venv-bpy/bin/python bpy pillow   # Blender dạng thư viện Python, ~1 GB
+.venv-bpy/bin/python phim-gia-dinh/cong-cu/dung_nhan_vat_blender.py --out /tmp/raw   # 7 nhân vật, ~4 phút trên 4 CPU, không cần GPU
+python3 phim-gia-dinh/cong-cu/ghep_bang_nhan_vat.py /tmp/raw                          # ghép bảng có nhãn
+```
+
+Thông số mỗi nhân vật nằm trong `NHAN_VAT` ở đầu `dung_nhan_vat_blender.py` (khớp `nhan-vat-3d/*.json`). **Đây là mô hình dựng bằng hình khối, không phải mặt người "giống thật 90%"**: đúng chiều cao, tỉ lệ, dáng, màu da, tóc, trang phục và dấu nhận dạng, dùng làm tham chiếu tỉ lệ / tư thế / ánh sáng. Muốn khuôn mặt thật hơn: tạo chân dung bằng `nhan-vat-3d/prompt-anh-nhan-vat.md` rồi dùng dịch vụ ảnh → 3D, hoặc dựng mặt chi tiết trong Blender (sculpt / MB-Lab / MetaHuman).
 
 ## Quy trình sản xuất gợi ý (dùng các skill trong repo)
 
