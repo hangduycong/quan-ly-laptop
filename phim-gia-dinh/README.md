@@ -17,6 +17,7 @@ Phim dài tập tình cảm gia đình, 12 tập × khoảng 10 phút. Nhân v�
 | `tap/tap-01-prompt-hinh-anh.md` | 8 prompt bối cảnh trống + keyframe (GPT Image 2.5) và chuyển động (Kling 3.0) cho 88 cảnh tạo AI |
 | `cong-cu/` | Dữ liệu cảnh tập 1 (`tap01_du_lieu.py`), chuỗi nhận dạng, script sinh prompt và animatic |
 | `nhan-vat-3d/blender/` | 7 nhân vật tập 1 dựng bằng Blender: `<tên>.glb` (mô hình) và `<tên>_bang.jpg` (trước / ba phần tư / sau / cận mặt), `tap01_dan-nhan-vat.jpg` (bảng tổng) |
+| `tap/hinh-3d-tap01/` | 88 ảnh bố cục 3D (`01.jpg` … `93.jpg`, theo số cảnh quay) và 8 bảng xem nhanh `bang-canh-1..8.jpg` |
 | `animatic/tap-01-animatic.mp4` | Animatic tập 1 (7:41, thẻ cảnh + phụ đề + âm nền). Không lưu trong git; tạo lại bằng lệnh dưới |
 
 ## Thời lượng
@@ -41,6 +42,16 @@ python3 phim-gia-dinh/cong-cu/ghep_bang_nhan_vat.py /tmp/raw                    
 ```
 
 Thông số mỗi nhân vật nằm trong `NHAN_VAT` ở đầu `dung_nhan_vat_blender.py` (khớp `nhan-vat-3d/*.json`). **Đây là mô hình dựng bằng hình khối, không phải mặt người "giống thật 90%"**: đúng chiều cao, tỉ lệ, dáng, màu da, tóc, trang phục và dấu nhận dạng, dùng làm tham chiếu tỉ lệ / tư thế / ánh sáng. Muốn khuôn mặt thật hơn: tạo chân dung bằng `nhan-vat-3d/prompt-anh-nhan-vat.md` rồi dùng dịch vụ ảnh → 3D, hoặc dựng mặt chi tiết trong Blender (sculpt / MB-Lab / MetaHuman).
+
+## Cảnh 3D tập 1 (Blender)
+
+```bash
+.venv-bpy/bin/python phim-gia-dinh/cong-cu/dung_canh_3d_tap01.py [--scenes 2 5] [--shots 9 62] --samples 14   # ~11 s / ảnh trên 4 CPU
+python3 phim-gia-dinh/cong-cu/ghep_bang_canh_3d.py       # bảng xem nhanh
+python3 phim-gia-dinh/cong-cu/tao_animatic_tap01.py      # animatic dùng ảnh 3D
+```
+
+8 bộ cảnh dựng từ hình khối (hành lang, phòng bệnh, mái hiên mưa, trường gà, sân nhà, bữa cơm, phòng Mẹ, sân sau). Vị trí nhân vật: `SCENE_CFG` / `OVR` trong `dung_canh_3d_tap01.py`; camera tính từ cỡ cảnh, ống kính và góc máy trong `tap01_du_lieu.py`, hướng nhìn riêng: `AZ`. **Đây là ảnh bố cục** (vị trí, cỡ cảnh, trục máy, ánh sáng) với nhân vật hình khối, không phải ảnh phim cuối. 5 cảnh có chữ trong khung (02, 42, 72, 78, 79) không dựng. Cảnh 35 (tay giơ tiền) và 38 (tay trao giấy) chưa có chi tiết bàn tay.
 
 ## Quy trình sản xuất gợi ý (dùng các skill trong repo)
 
