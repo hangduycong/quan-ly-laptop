@@ -21,6 +21,7 @@ sys.path.insert(0, str(HERE))
 from tap01_du_lieu import LOC, SCENES, SHOTS  # noqa: E402
 
 W, H, FPS = 1280, 720, 24
+HINH = HERE.parent / "tap" / "hinh-3d-tap01"  # ảnh 3D do dung_canh_3d_tap01.py tạo (nếu có)
 FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 FONT_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 BAND_COLOR = {"Xanh": (70, 160, 95), "Vàng": (215, 165, 40), "Đỏ": (200, 60, 50)}
@@ -108,8 +109,12 @@ def card(shot, row, scene_name, sub, idx_in_scene, t0):
     box = (40, 110, 40 + 640, 110 + 360)
     names = {"minh": "Minh", "ba-thu": "Bà Thu", "nhung": "Nhung", "yen": "Yến", "trang": "Trang", "ong-hai": "Ông Hải", "thang": "Thắng"}
     label = "CHÈN CHI TIẾT" if "insert" in framing or "hand" in framing else "KHÔNG MẶT NGƯỜI"
-    frame = Image.new("RGB", (box[2] - box[0], box[3] - box[1]), TINT[loc])  # vẽ riêng rồi dán: hình bóng không tràn khung
-    silhouettes(ImageDraw.Draw(frame), (0, 0, frame.width, frame.height), len(chars), size_scale(framing), label)
+    still = HINH / f"{i:02d}.jpg"
+    if still.exists():  # ảnh bố cục 3D (Blender) thay cho hình bóng
+        frame = Image.open(still).convert("RGB").resize((box[2] - box[0], box[3] - box[1]))
+    else:
+        frame = Image.new("RGB", (box[2] - box[0], box[3] - box[1]), TINT[loc])  # vẽ riêng rồi dán: hình bóng không tràn khung
+        silhouettes(ImageDraw.Draw(frame), (0, 0, frame.width, frame.height), len(chars), size_scale(framing), label)
     img.paste(frame, box[:2])
     dr.rectangle(box, outline=(120, 120, 120), width=2)
     if chars:
@@ -148,7 +153,11 @@ def card(shot, row, scene_name, sub, idx_in_scene, t0):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", default=str(HERE.parent / "animatic" / "tap-01-animatic.mp4"))
+    ap.add_argument("--hinh", default=None, help="thư mục ảnh 3D (mặc định tap/hinh-3d-tap01)")
     a = ap.parse_args()
+    global HINH
+    if a.hinh:
+        HINH = Path(a.hinh)
     if not shutil.which("ffmpeg"):
         sys.exit("thiếu ffmpeg")
     rows = table_rows()

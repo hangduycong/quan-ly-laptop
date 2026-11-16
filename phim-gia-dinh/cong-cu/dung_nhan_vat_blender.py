@@ -128,7 +128,7 @@ def limb(p0, p1, r0, r1, m, parent):
 
 
 # ------------------------------------------------------------------ dựng ----
-def build(key, c):
+def build(key, c, pose="stand"):
     H = c["h"]
     root = bpy.data.objects.new(f"{key}_root", None)
     bpy.context.collection.objects.link(root)
@@ -157,15 +157,23 @@ def build(key, c):
     def up(z):  # giữ nguyên toạ độ thế giới: put() đã bù phép biến đổi của pivot
         return z
 
-    # ---- chân (không cúi: gắn vào root)
+    # ---- chân (không cúi: gắn vào root). pose="sit": ngồi trên ghế cao 0,45 m, đùi hướng về -Y
+    seat_h = 0.30 * H
     for sx in (-1, 1):
         hipx = sx * hw * 0.28
-        limb((hipx, 0, hip_z - 0.03), (sx * hw * 0.23, 0.005, 0.30 * H), 0.075 * fat, 0.055 * fat, pants, root)
-        limb((sx * hw * 0.23, 0.005, 0.30 * H), (sx * hw * 0.22, 0, 0.055 * H), 0.055 * fat, 0.042 * fat, pants, root)
-        sphere((sx * hw * 0.22, -0.045, 0.035 * H), (0.045, 0.115, 0.04), shoes, root)
+        if pose == "stand":
+            limb((hipx, 0, hip_z - 0.03), (sx * hw * 0.23, 0.005, 0.30 * H), 0.075 * fat, 0.055 * fat, pants, root)
+            limb((sx * hw * 0.23, 0.005, 0.30 * H), (sx * hw * 0.22, 0, 0.055 * H), 0.055 * fat, 0.042 * fat, pants, root)
+            sphere((sx * hw * 0.22, -0.045, 0.035 * H), (0.045, 0.115, 0.04), shoes, root)
+        else:
+            kz = seat_h - 0.01
+            limb((hipx, 0, seat_h), (hipx * 0.9, -0.245 * H, kz), 0.075 * fat, 0.058 * fat, pants, root)
+            limb((hipx * 0.9, -0.245 * H, kz), (hipx * 0.88, -0.255 * H, 0.055 * H), 0.058 * fat, 0.042 * fat, pants, root)
+            sphere((hipx * 0.88, -0.300 * H, 0.035 * H), (0.045, 0.115, 0.04), shoes, root)
     # váy (Yến)
     if c.get("skirt"):
-        bpy.ops.mesh.primitive_cone_add(vertices=40, radius1=hw * 0.66, radius2=hw * 0.50, depth=0.42 * H, location=(0, 0, hip_z - 0.18 * H))
+        zc, dep = (hip_z - 0.18 * H, 0.42 * H) if pose == "stand" else (seat_h - 0.08 * H, 0.30 * H)
+        bpy.ops.mesh.primitive_cone_add(vertices=40, radius1=hw * 0.66, radius2=hw * 0.50, depth=dep, location=(0, 0, zc))
         sk = bpy.context.active_object
         put(sk, mat(c["skirt"], 0.9), root)
     # ---- khung chậu + thân
@@ -344,6 +352,8 @@ def build(key, c):
         ch = bpy.context.active_object
         put(ch, mat("#D4AF37", 0.25), P)
         ch.data.materials[0].node_tree.nodes["Principled BSDF"].inputs["Metallic"].default_value = 1.0
+    if pose != "stand":
+        pivot.location.z = seat_h  # hạ cả phần thân + đầu + tay xuống ngang mặt ghế
     pivot.rotation_euler = (math.radians(c["stoop"]), 0, 0)
     return root, H
 
