@@ -55,11 +55,11 @@ python3 phim-gia-dinh/cong-cu/tao_animatic_tap01.py      # animatic dùng ảnh 
 
 ## Quy trình sản xuất gợi ý (dùng các skill trong repo)
 
-1. **Phân cảnh, danh sách cảnh quay:** `ho-tro-danh-sach-canh-quay` cho từng tập (bảng tiếng Việt có cỡ cảnh, góc máy, ánh sáng, mốc liên tục).
-2. **Hình ảnh nhân vật và keyframe:** `mo-phong-cong-viec-dao-dien` (nhánh image) dựa trên `nhan-vat-3d/*.json`. Dựng 3D thật bằng Blender: `cong-cu-san-xuat-video` (cần máy có Blender và GPU).
-3. **Clip chuyển động từ keyframe:** `mo-phong-cong-viec-dao-dien` (nhánh video) viết prompt cho Kling / Veo / Seedance, giữ khối nhận dạng nhân vật giống nhau ở mọi prompt.
-4. **Lồng tiếng, nhạc, dựng:** `cong-cu-san-xuat-video` (thuyết minh AI) hoặc thu giọng thật, rồi `bien-tap` để cắt, làm phụ đề tiếng Việt, nhạc nền.
-5. **Đăng YouTube:** `video-youtube` (intro / outro), `tro-ly-kenh-youtube` (tiêu đề, mô tả, chapters), `cat-video-dai-thanh-shorts` (cắt Shorts quảng bá).
+1. **Phân cảnh, danh sách cảnh quay:** `b2-ho-tro-danh-sach-canh-quay` cho từng tập (bảng tiếng Việt có cỡ cảnh, góc máy, ánh sáng, mốc liên tục).
+2. **Hình ảnh nhân vật và keyframe:** `b2-mo-phong-cong-viec-dao-dien` (nhánh image) dựa trên `nhan-vat-3d/*.json`. Dựng 3D thật bằng Blender: `b3-cong-cu-san-xuat-video` (cần máy có Blender và GPU).
+3. **Clip chuyển động từ keyframe:** `b2-mo-phong-cong-viec-dao-dien` (nhánh video) viết prompt cho Kling / Veo / Seedance, giữ khối nhận dạng nhân vật giống nhau ở mọi prompt.
+4. **Lồng tiếng, nhạc, dựng:** `b3-cong-cu-san-xuat-video` (thuyết minh AI) hoặc thu giọng thật, rồi `b4-bien-tap` để cắt, làm phụ đề tiếng Việt, nhạc nền.
+5. **Đăng YouTube:** `b5-video-youtube` (intro / outro), `b1-tro-ly-kenh-youtube` (tiêu đề, mô tả, chapters), `b5-cat-video-dai-thanh-shorts` (cắt Shorts quảng bá).
 
 ## Nội dung nhạy cảm
 

@@ -1,6 +1,6 @@
 # Nhập skill từ một repo GitHub
 
-Quy trình đã dùng để tạo các skill trong repo này (`bien-tap`, `ho-tro-tao-video`, `video-youtube`, các skill iart-ai, `tuan-thu-quy-trinh`…). Làm theo thứ tự; mỗi bước có lý do.
+Quy trình đã dùng để tạo các skill trong repo này (`b4-bien-tap`, `b3-ho-tro-tao-video`, `b5-video-youtube`, các skill iart-ai, `tuan-thu-quy-trinh`…). Làm theo thứ tự; mỗi bước có lý do.
 
 ## 1. Tải về chỗ tạm và đọc trước
 
@@ -38,7 +38,7 @@ Cấu trúc chuẩn trong repo này:
 
 ## 4. Viết `SKILL.md` cửa vào
 
-- `name` = tên thư mục, kebab-case không dấu (vd. "hỗ trợ tạo video" → `ho-tro-tao-video`).
+- `name` = tên thư mục, kebab-case không dấu (vd. "hỗ trợ tạo video" → `b3-ho-tro-tao-video`).
 - `description` ≤ 1024 ký tự, không chứa `<` `>`; mở đầu bằng tên tiếng Việt, nói việc cụ thể, cuối là `Use for "cụm từ tiếng Việt", "English", "/ten"`. **Đặt trong nháy đơn** `'...'` (nháy đơn bên trong viết `''`) — mô tả có `: ` mà không đặt trong nháy là YAML hỏng và skill không được nhận (đã gặp ở 12 skill, xem bài học).
 - Thân: nguồn + giấy phép (1 dòng), dùng cho việc gì, bảng định tuyến tới file gốc, điều kiện chạy (công cụ, key trả phí → hỏi trước), quy ước tiếng Việt (giải thích tiếng Việt; prompt cho model AI thường tiếng Anh), ranh giới (người thật, bản quyền, chi tiền), liên kết skill liên quan trong repo.
 - Mẫu: `mau/SKILL.mau.md`.

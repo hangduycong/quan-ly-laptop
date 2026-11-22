@@ -1,6 +1,6 @@
 # Prompt tạo ảnh nhân vật — "Mùa Cuối Của Mẹ"
 
-> Viết theo skill `mo-phong-cong-viec-dao-dien` (dựa trên Visual Skills của **Serge Shima**, CC BY 4.0 — https://github.com/smixs/visual-skills) và quy tắc chuỗi nhận dạng của `ho-tro-danh-sach-canh-quay` (DirectorSKILL). Tất cả nhân vật là **hư cấu**.
+> Viết theo skill `b2-mo-phong-cong-viec-dao-dien` (dựa trên Visual Skills của **Serge Shima**, CC BY 4.0 — https://github.com/smixs/visual-skills) và quy tắc chuỗi nhận dạng của `b2-ho-tro-danh-sach-canh-quay` (DirectorSKILL). Tất cả nhân vật là **hư cấu**.
 
 ## Cài đặt chung
 

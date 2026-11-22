@@ -36,7 +36,7 @@
   },
   "seed": 20260115,
   "tham_chieu_render": {
-    "cong_cu": "skill cong-cu-san-xuat-video (tools/blender_render.py) hoặc mo-phong-cong-viec-dao-dien để viết prompt",
+    "cong_cu": "skill b3-cong-cu-san-xuat-video (tools/blender_render.py) hoặc b2-mo-phong-cong-viec-dao-dien để viết prompt",
     "dinh_dang": "9:16 cho bản Shorts, 16:9 cho bản tập đầy đủ",
     "canh_chinh": "cảnh 2 (phòng bệnh) và cảnh 6 (phòng Mẹ, đèn ngủ vàng)"
   },

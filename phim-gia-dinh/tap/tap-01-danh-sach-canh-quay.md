@@ -1,6 +1,6 @@
 # Danh sách cảnh quay — Tập 1: Về nhà
 
-> Lập theo skill `ho-tro-danh-sach-canh-quay` (DirectorSKILL, mode D) từ `tap-01-ve-nha.md`. Giả định: khung **16:9**, bảng dùng được cho cả quay thật lẫn tạo clip AI; clip AI giữ 3–8 giây, cảnh thoại dài hơn ghi chú cách tách.
+> Lập theo skill `b2-ho-tro-danh-sach-canh-quay` (DirectorSKILL, mode D) từ `tap-01-ve-nha.md`. Giả định: khung **16:9**, bảng dùng được cho cả quay thật lẫn tạo clip AI; clip AI giữ 3–8 giây, cảnh thoại dài hơn ghi chú cách tách.
 
 ## Luật hình ảnh của tập (director's book rút gọn)
 

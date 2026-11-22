@@ -91,8 +91,8 @@ def motion(s):
 def main():
     out = ["# Prompt hình ảnh — Tập 1: Về nhà", "",
            "> Sinh tự động bởi `cong-cu/tao_prompt_tap01.py` từ `cong-cu/tap01_du_lieu.py` (93 cảnh, khớp `tap-01-danh-sach-canh-quay.md`) "
-           "và `cong-cu/chuoi_nhan_dang.py`. Viết theo skill `mo-phong-cong-viec-dao-dien` (Visual Skills của **Serge Shima**, CC BY 4.0 — "
-           "https://github.com/smixs/visual-skills) và `ho-tro-danh-sach-canh-quay` (DirectorSKILL). Sửa dữ liệu rồi chạy lại script; đừng sửa tay file này.", "",
+           "và `cong-cu/chuoi_nhan_dang.py`. Viết theo skill `b2-mo-phong-cong-viec-dao-dien` (Visual Skills của **Serge Shima**, CC BY 4.0 — "
+           "https://github.com/smixs/visual-skills) và `b2-ho-tro-danh-sach-canh-quay` (DirectorSKILL). Sửa dữ liệu rồi chạy lại script; đừng sửa tay file này.", "",
            "## Quy trình", "",
            "1. **Ảnh bối cảnh trống** (mục A): GPT Image 2.5 Sunburst, `quality: medium`, `size: 1536x864`. Chọn một ảnh mỗi bối cảnh, dùng lại cho mọi cảnh.",
            "2. **Chân dung khóa nhận dạng**: theo `../nhan-vat-3d/prompt-anh-nhan-vat.md`.",
@@ -102,7 +102,7 @@ def main():
            "`aspect_ratio: 16:9`, `cfg_scale: 0.6`, **`generate_audio: false`**. Cảnh Vàng: tạo 2–3 bản, chọn một; Xanh: 1–2 bản.",
            "5. **Tiếng**: thu giọng diễn viên (hoặc lồng tiếng) theo thoại ghi ở từng cảnh; nhép môi khi dựng hoặc bằng chức năng lip-sync của công cụ nếu có. "
            "Không tin vào âm thanh do model video tự sinh cho tiếng Việt.",
-           "6. **Dựng**: ghép theo thứ tự cảnh bằng skill `bien-tap` (phụ đề tiếng Việt, nhạc nền, chuẩn âm lượng).", "",
+           "6. **Dựng**: ghép theo thứ tự cảnh bằng skill `b4-bien-tap` (phụ đề tiếng Việt, nhạc nền, chuẩn âm lượng).", "",
            "Cảnh **không tạo AI** (có chữ tiếng Việt trong khung): 02, 42, 72, 78, 79 — quay đạo cụ thật hoặc làm đồ họa khi dựng. "
            "Cảnh 47: bảng chỉ đường thêm khi dựng.", "",
            "## A. Ảnh bối cảnh trống (8)", ""]
@@ -132,7 +132,7 @@ def main():
             "- Mỗi cảnh AI có đủ ba chi tiết: áp lực môi trường (dòng Scene / chi tiết bối cảnh), cử động trên cơ thể (dòng hành động), mô-típ (Important Details).",
             "- Mỗi clip có một chuyển động máy và một hành động chính, kết thúc bằng dòng `Ends on`.",
             "- Chuỗi nhận dạng được chép nguyên văn từ `chuoi_nhan_dang.py`; không sửa trong file này.",
-            "- Đổi model khác (Veo, Seedance): giữ keyframe, viết lại khối chuyển động theo file model tương ứng trong skill `mo-phong-cong-viec-dao-dien`.", ""]
+            "- Đổi model khác (Veo, Seedance): giữ keyframe, viết lại khối chuyển động theo file model tương ứng trong skill `b2-mo-phong-cong-viec-dao-dien`.", ""]
     text = "\n".join(out)
     bad = BANNED.findall(text.split("## A.")[1])
     dst = HERE.parent / "tap" / "tap-01-prompt-hinh-anh.md"
