@@ -1,6 +1,6 @@
 # skills_manifest.md
 
-Danh sách **31 skill** của dự án (thư mục `.claude/skills/`): tên, chức năng và câu lệnh thực thi. Sinh tự động từ frontmatter của từng `SKILL.md` và từ các script thật trong thư mục; mọi đường dẫn script bên dưới đã được kiểm tra là tồn tại.
+Danh sách **32 skill** của dự án (thư mục `.claude/skills/`): tên, chức năng và câu lệnh thực thi. Sinh tự động từ frontmatter của từng `SKILL.md` và từ các script thật trong thư mục; mọi đường dẫn script bên dưới đã được kiểm tra là tồn tại.
 
 ## Cách chạy một skill
 
@@ -37,13 +37,14 @@ Danh sách **31 skill** của dự án (thư mục `.claude/skills/`): tên, ch�
 | 22 | `b-roll-cho-video` | Tạo video / đồ họa (gói iart-ai) | `/b-roll-cho-video` |
 | 23 | `video-nguoi-noi-ai` | Tạo video / đồ họa (gói iart-ai) | `/video-nguoi-noi-ai` |
 | 24 | `video-youtube` | YouTube | `/video-youtube` |
-| 25 | `cat-video-dai-thanh-shorts` | YouTube | `/cat-video-dai-thanh-shorts` |
-| 26 | `tro-ly-kenh-youtube` | YouTube | `/tro-ly-kenh-youtube` |
-| 27 | `chien-luoc-kenh-youtube` | YouTube | `/chien-luoc-kenh-youtube` |
-| 28 | `ho-tro-danh-sach-canh-quay` | Đạo diễn / kịch bản | `/ho-tro-danh-sach-canh-quay` |
-| 29 | `mo-phong-cong-viec-dao-dien` | Đạo diễn / kịch bản | `/mo-phong-cong-viec-dao-dien` |
-| 30 | `tuan-thu-quy-trinh` | Quy trình / công cụ phát triển | `/tuan-thu-quy-trinh` |
-| 31 | `tao-skill-rieng-theo-nhu-cau` | Quy trình / công cụ phát triển | `/tao-skill-rieng-theo-nhu-cau` |
+| 25 | `dang-video-youtube` | YouTube | `/dang-video-youtube` |
+| 26 | `cat-video-dai-thanh-shorts` | YouTube | `/cat-video-dai-thanh-shorts` |
+| 27 | `tro-ly-kenh-youtube` | YouTube | `/tro-ly-kenh-youtube` |
+| 28 | `chien-luoc-kenh-youtube` | YouTube | `/chien-luoc-kenh-youtube` |
+| 29 | `ho-tro-danh-sach-canh-quay` | Đạo diễn / kịch bản | `/ho-tro-danh-sach-canh-quay` |
+| 30 | `mo-phong-cong-viec-dao-dien` | Đạo diễn / kịch bản | `/mo-phong-cong-viec-dao-dien` |
+| 31 | `tuan-thu-quy-trinh` | Quy trình / công cụ phát triển | `/tuan-thu-quy-trinh` |
+| 32 | `tao-skill-rieng-theo-nhu-cau` | Quy trình / công cụ phát triển | `/tao-skill-rieng-theo-nhu-cau` |
 
 ## Dựng / chỉnh video
 
@@ -386,6 +387,23 @@ Danh sách **31 skill** của dự án (thư mục `.claude/skills/`): tên, ch�
 | Render audiogram dọc | `npx remotion render AudiogramVertical out/audiogram-9x16.mp4 --props=./audiogram.json` |
 | Nhiều kênh | `bash .claude/skills/video-youtube/scripts/render_all.sh` |
 | Kiểm tra MP4 | `bash .claude/skills/video-youtube/goc/scripts/probe-mp4.sh out/intro.mp4 1920x1080 30` |
+
+### `dang-video-youtube`
+
+**Chức năng:** Đăng video thật lên YouTube qua YouTube Data API v3 + OAuth 2.0 (thư viện chuẩn Python): tải lên từng đoạn tự nối lại, tiêu đề / mô tả / thẻ, thumbnail, hẹn giờ, Shorts, khai báo nội dung AI. Mặc định riêng tư; công khai cần --yes. Cần file khóa OAuth (references/huong-dan-oauth.md).
+
+**Câu lệnh thực thi:**
+
+| Việc | Lệnh |
+|---|---|
+| Gọi | `/dang-video-youtube` |
+| Kiểm tra điều kiện | `python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py doctor` |
+| Đăng nhập (có trình duyệt) | `python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py login` |
+| Đăng nhập (không trình duyệt) | `python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py login-url ; python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py login-finish "<địa chỉ đã copy>"` |
+| Chạy thử không gửi | `python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py upload <video> --meta meta.json --dry-run` |
+| Đăng (riêng tư mặc định) | `python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py upload <video> --meta meta.json [--thumbnail t.jpg] [--shorts] [--ai-generated] [--privacy unlisted|public --yes] [--publish-at <ISO>]` |
+| Thu hồi quyền | `python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py logout` |
+| Tự kiểm tra (server giả) | `python3 .claude/skills/dang-video-youtube/scripts/youtube_upload.py selftest` |
 
 ### `cat-video-dai-thanh-shorts`
 
